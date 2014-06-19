@@ -34,7 +34,7 @@
         [QYViewControllerManager presentQYController:QYControllerTypeUserGuideView];
     }else
     {
-        if (NO) {
+        if (YES) {
             [QYViewControllerManager presentQYController:QYControllerTypeMainView];
         }else
         {

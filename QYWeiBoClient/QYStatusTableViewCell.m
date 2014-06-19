@@ -21,8 +21,8 @@
         _avatarImage = [[UIImageView alloc] initWithFrame:CGRectMake(5, 5, 35, 35)];
         //因为UIImageView默认情况下是不能交互， 也就是默认情况下放在其上的控件不能点击，手势也不起作用
         self.avatarImage.userInteractionEnabled = YES;
-//        UITapGestureRecognizer *tapGesture = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(onAvatarImageViewTapped:)];
-//        [self.avatarImage addGestureRecognizer:tapGesture];
+        UITapGestureRecognizer *tapGesture = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(onAvatarImageViewTapped:)];
+        [self.avatarImage addGestureRecognizer:tapGesture];
         [self.contentView addSubview:_avatarImage];
         
         _nameLabel = [[UILabel alloc] initWithFrame:CGRectZero];
@@ -78,6 +78,7 @@
 - (void)layoutSubviews
 {
     [super layoutSubviews];
+//    为了保障复用单元格的时候，界面不会出现重复，需要在重新布局前，将界面还原
     [self restoreCellSubviewFrame];
     CGFloat fontSize = 14.0f;
     NSDictionary *dicUserInfo = [self.cellData objectForKey:@"user"];

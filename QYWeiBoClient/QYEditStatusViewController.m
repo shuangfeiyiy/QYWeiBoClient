@@ -326,7 +326,18 @@
         [self.sendButton setTitleColor:[UIColor lightGrayColor] forState:UIControlStateNormal];
     }
 }
-
+//实现textView的PlaceHolder功能
+- (BOOL)textView:(UITextView *)textView shouldChangeTextInRange:(NSRange)range replacementText:(NSString *)text
+{
+    if ([textView.text isEqualToString:@"分享新鲜事..."]) {
+        textView.text = @"";
+    }else if (textView.text.length == 0)
+    {
+        textView.text = @"分享新鲜事...";
+        textView.selectedRange = range;
+    }
+    return YES;
+}
 //当TextView开始编辑的时候，将光标移动到行首
 - (BOOL)textViewShouldBeginEditing:(UITextView *)textView;
 {
@@ -336,7 +347,6 @@
     textView.selectedRange =range;
     return YES;
 }
-
 
 #pragma mark - UIActionSheetDelegate
 - (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex
