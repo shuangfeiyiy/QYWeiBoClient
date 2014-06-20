@@ -32,6 +32,11 @@
                                   image:[UIImage imageNamed:@"tabbar_home"]
                           selectedImage:[UIImage imageNamed:@"tabbar_home_selected"]];
         _stImageHeight = 0.0f;
+        NSArray *timeLines = [[QYWBDataBaseEngine shareInstance] queryTimeLinesFromDataBase];
+        self.statusList = timeLines;
+        if (nil == _statusList) {
+            [self onRefreshControl:nil];
+        }
     }
     return self;
 }
@@ -47,8 +52,6 @@
     self.refreshControl = refreshControl;
     [refreshControl release];
     
-    [self onRefreshControl:nil];
-    
     UIBarButtonItem *rightItem = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"navigationbar_pop_os7"] style:UIBarButtonItemStylePlain target:self action:@selector(onRightButtonItem:)];
     self.navigationItem.rightBarButtonItem = rightItem;
     
@@ -62,8 +65,6 @@
     
     UIBarButtonItem *leftItem = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"navigationbar_compose_os7"] style:UIBarButtonItemStylePlain target:self action:@selector(onLeftButtonItem:)];
     self.navigationItem.leftBarButtonItem = leftItem;
-    
-    [self requestUserInfoFromSinaServer];
 }
 
 #pragma mark - UINavigationBar button callback message
@@ -83,11 +84,6 @@
     QYEditStatusViewController *editStatusViewController = [[QYEditStatusViewController alloc] init];
     [self presentViewController:editStatusViewController animated:YES completion:nil];
     QYSafeRelease(editStatusViewController);
-}
-- (void)viewWillAppear:(BOOL)animated
-{
-    [super viewWillAppear:animated];
-    [self onRefreshControl:nil];
 }
 
 - (void)onRefreshControl:(UIRefreshControl*)refreshControl
