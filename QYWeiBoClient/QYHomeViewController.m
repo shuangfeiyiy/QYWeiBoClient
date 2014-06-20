@@ -17,9 +17,9 @@
 #import "NSString+FrameHeight.h"
 #import "QYWBDataBaseEngine.h"
 
-@interface QYHomeViewController ()<QYStatusTableViewCellDelegate>
+@interface QYHomeViewController ()<QYStatusTableViewCellDelegate,NSURLConnectionDataDelegate>
 
-
+@property (nonatomic, assign) CGFloat stImageHeight;
 @end
 
 @implementation QYHomeViewController
@@ -31,7 +31,7 @@
         [self.tabBarItem  initWithTitle:@"首页"
                                   image:[UIImage imageNamed:@"tabbar_home"]
                           selectedImage:[UIImage imageNamed:@"tabbar_home_selected"]];
-        
+        _stImageHeight = 0.0f;
     }
     return self;
 }
@@ -39,7 +39,7 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-   
+    
     UIRefreshControl *refreshControl = [[UIRefreshControl alloc] init];
     refreshControl.tintColor = [UIColor lightGrayColor];
     refreshControl.backgroundColor = [UIColor clearColor];
@@ -146,13 +146,13 @@ static CGFloat fontSize = 14.0f;
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-//    用户头部信息高度
+    //    用户头部信息高度
     CGFloat height4Header = 40.0;
-//    原创微博文本内容所占高度
+    //    原创微博文本内容所占高度
     CGFloat statusTextHeight = 0.0;
-//    原创微博如果有图片的话， 图片所占的高度
+    //    原创微博如果有图片的话， 图片所占的高度
     CGFloat statusImageViewHeight = 0.0;
-//    转发微博文本内容所占高度
+    //    转发微博文本内容所占高度
     CGFloat retweetStatusTextHeight = 0.0;
     
     NSDictionary *statusInfo = self.statusList[indexPath.section];
@@ -162,15 +162,15 @@ static CGFloat fontSize = 14.0f;
     statusTextHeight = [content frameHeightWithFontSize:fontSize forViewWidth:310.0f];
     NSDictionary *retweetStatus = [statusInfo objectForKey:@"retweeted_status"];
     
-//    当retweetStatus为空的时候， 表示当前是一条原创微博
+    //    当retweetStatus为空的时候， 表示当前是一条原创微博
     if (nil == retweetStatus) {
-//      如果这条微博带的有图片，则计算图片的高度
+        //      如果这条微博带的有图片，则计算图片的高度
         NSArray *picUrls = [statusInfo objectForKey:@"pic_urls"];
         if (picUrls.count == 1) {
             NSDictionary *dic = picUrls[0];
             NSString *strPicUrls = [dic objectForKey:@"thumbnail_pic"];
-            UIImage *weiboImage = [UIImage imageWithData:[NSData dataWithContentsOfURL:[NSURL URLWithString:strPicUrls]]];
-            statusImageViewHeight += weiboImage.size.height;
+            CGSize imagSize =  [self downloadJpgImage:strPicUrls];
+            statusImageViewHeight += imagSize.height;
         }else if(picUrls.count > 1)
         {
             int picLineCount = ceilf(picUrls.count / 3.0);
@@ -184,14 +184,14 @@ static CGFloat fontSize = 14.0f;
         if (retPicUrls.count == 1) {
             NSDictionary *dic = retPicUrls[0];
             NSString *strPicUrls = [dic objectForKey:@"thumbnail_pic"];
-            UIImage *weiboImage = [UIImage imageWithData:[NSData dataWithContentsOfURL:[NSURL URLWithString:strPicUrls]]];
-            statusImageViewHeight += weiboImage.size.height;
+            CGSize imgSize = [self downloadJpgImage:strPicUrls];
+            statusImageViewHeight += imgSize.height;
         }else if(retPicUrls.count > 1)
         {
             int picLineCount = ceilf(retPicUrls.count / 3.0);
             statusImageViewHeight += (80 * picLineCount);
         }
-
+        
         
     }
     return (height4Header + statusTextHeight + statusImageViewHeight + retweetStatusTextHeight+20);
@@ -249,7 +249,7 @@ static CGFloat fontSize = 14.0f;
     [footerView addSubview:attitudesBtn];
     
     return footerView;
-
+    
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section
@@ -263,7 +263,7 @@ static CGFloat fontSize = 14.0f;
 }
 
 #pragma mark -
-#pragma mark Function callback 
+#pragma mark Function callback
 - (void)onRetweetButtonTapped:(UIButton*)retweetButton
 {
     
@@ -395,4 +395,63 @@ static CGFloat fontSize = 14.0f;
     
     return [scrollView viewWithTag:3333];
 }
+
+
+#pragma mark -
+#pragma mark JPG格式的图片 根据图片部份数据得到图片的size
+- (CGSize)downloadJpgImage:(NSString*)strUrl
+{
+    NSMutableURLRequest *request = [[NSMutableURLRequest alloc] initWithURL:[NSURL URLWithString:strUrl]];
+    [request setValue:@"bytes=0-209" forHTTPHeaderField:@"Range"];
+    NSData *data = [NSURLConnection sendSynchronousRequest:request returningResponse:nil error:nil];
+    return [self jpgImageSizeWithHeaderData:data];
+}
+
+- (CGSize)jpgImageSizeWithHeaderData:(NSData *)data
+{
+    if ([data length] <= 0x58) {
+        return CGSizeZero;
+    }
+    if ([data length] < 210) {// 肯定只有一个DQT字段
+        short w1 = 0, w2 = 0;
+        [data getBytes:&w1 range:NSMakeRange(0x60, 0x1)];
+        [data getBytes:&w2 range:NSMakeRange(0x61, 0x1)];
+        short w = (w1 << 8) + w2;
+        short h1 = 0, h2 = 0;
+        [data getBytes:&h1 range:NSMakeRange(0x5e, 0x1)];
+        [data getBytes:&h2 range:NSMakeRange(0x5f, 0x1)];
+        short h = (h1 << 8) + h2;
+        return CGSizeMake(w, h);
+    } else {
+        short word = 0x0;
+        [data getBytes:&word range:NSMakeRange(0x15, 0x1)];
+        if (word == 0xdb) {
+            [data getBytes:&word range:NSMakeRange(0x5a, 0x1)];
+            if (word == 0xdb) {// 两个DQT字段
+                short w1 = 0, w2 = 0;
+                [data getBytes:&w1 range:NSMakeRange(0xa5, 0x1)];
+                [data getBytes:&w2 range:NSMakeRange(0xa6, 0x1)];
+                short w = (w1 << 8) + w2;
+                short h1 = 0, h2 = 0;
+                [data getBytes:&h1 range:NSMakeRange(0xa3, 0x1)];
+                [data getBytes:&h2 range:NSMakeRange(0xa4, 0x1)];
+                short h = (h1 << 8) + h2;
+                return CGSizeMake(w, h);
+            } else {// 一个DQT字段
+                short w1 = 0, w2 = 0;
+                [data getBytes:&w1 range:NSMakeRange(0x60, 0x1)];
+                [data getBytes:&w2 range:NSMakeRange(0x61, 0x1)];
+                short w = (w1 << 8) + w2;
+                short h1 = 0, h2 = 0;
+                [data getBytes:&h1 range:NSMakeRange(0x5e, 0x1)];
+                [data getBytes:&h2 range:NSMakeRange(0x5f, 0x1)];
+                short h = (h1 << 8) + h2;
+                return CGSizeMake(w, h);
+            }
+        } else {
+            return CGSizeZero;
+        }
+    }
+}
+
 @end
