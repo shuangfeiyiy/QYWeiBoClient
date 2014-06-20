@@ -19,6 +19,7 @@
 		CC4F71A7194AE55600F85BD0 /* QYFriendViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = CC4F71A5194AE55600F85BD0 /* QYFriendViewController.xib */; };
 		CC4F71AB194AFDFC00F85BD0 /* ChineseToPinyin.m in Sources */ = {isa = PBXBuildFile; fileRef = CC4F71AA194AFDFC00F85BD0 /* ChineseToPinyin.m */; };
 		CC4F71AE194B0E3800F85BD0 /* QYCustomView.m in Sources */ = {isa = PBXBuildFile; fileRef = CC4F71AD194B0E3800F85BD0 /* QYCustomView.m */; };
+		CC5B43811954297200197FD3 /* libsqlite3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = CC5B43801954297200197FD3 /* libsqlite3.dylib */; };
 		CC624EC21942A5A1000D58FE /* 48.png in Resources */ = {isa = PBXBuildFile; fileRef = CC624E431942A5A1000D58FE /* 48.png */; };
 		CC624EC31942A5A1000D58FE /* about_line.png in Resources */ = {isa = PBXBuildFile; fileRef = CC624E441942A5A1000D58FE /* about_line.png */; };
 		CC624EC41942A5A1000D58FE /* about_line@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CC624E451942A5A1000D58FE /* about_line@2x.png */; };
@@ -172,6 +173,13 @@
 		CC624F861942F061000D58FE /* SVProgressHUD.bundle in Resources */ = {isa = PBXBuildFile; fileRef = CC624F831942F061000D58FE /* SVProgressHUD.bundle */; };
 		CC624F871942F061000D58FE /* SVProgressHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = CC624F851942F061000D58FE /* SVProgressHUD.m */; };
 		CC624F8B1943037A000D58FE /* XMLDictionary.m in Sources */ = {isa = PBXBuildFile; fileRef = CC624F8A1943037A000D58FE /* XMLDictionary.m */; settings = {COMPILER_FLAGS = "-fobjc-arc"; }; };
+		CC7B53E31954193700D49261 /* qy_weibo_client.sqlite in Resources */ = {isa = PBXBuildFile; fileRef = CC7B53E21954193700D49261 /* qy_weibo_client.sqlite */; };
+		CC7B53EF195422B500D49261 /* FMDatabase.m in Sources */ = {isa = PBXBuildFile; fileRef = CC7B53E6195422B500D49261 /* FMDatabase.m */; };
+		CC7B53F0195422B500D49261 /* FMDatabaseAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = CC7B53E8195422B500D49261 /* FMDatabaseAdditions.m */; };
+		CC7B53F1195422B500D49261 /* FMDatabasePool.m in Sources */ = {isa = PBXBuildFile; fileRef = CC7B53EA195422B500D49261 /* FMDatabasePool.m */; };
+		CC7B53F2195422B500D49261 /* FMDatabaseQueue.m in Sources */ = {isa = PBXBuildFile; fileRef = CC7B53EC195422B500D49261 /* FMDatabaseQueue.m */; };
+		CC7B53F3195422B500D49261 /* FMResultSet.m in Sources */ = {isa = PBXBuildFile; fileRef = CC7B53EE195422B500D49261 /* FMResultSet.m */; };
+		CC7B53F61954232F00D49261 /* QYWBDataBaseEngine.m in Sources */ = {isa = PBXBuildFile; fileRef = CC7B53F51954232F00D49261 /* QYWBDataBaseEngine.m */; };
 		CC9CF4621941A42E000D26D7 /* QYMainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CC9CF4601941A42E000D26D7 /* QYMainViewController.m */; };
 		CC9CF4631941A42E000D26D7 /* QYMainViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = CC9CF4611941A42E000D26D7 /* QYMainViewController.xib */; };
 		CCA917EB19505273009B3915 /* NSString+FrameHeight.m in Sources */ = {isa = PBXBuildFile; fileRef = CCA917EA19505273009B3915 /* NSString+FrameHeight.m */; };
@@ -245,6 +253,7 @@
 		CC4F71AA194AFDFC00F85BD0 /* ChineseToPinyin.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChineseToPinyin.m; sourceTree = "<group>"; };
 		CC4F71AC194B0E3800F85BD0 /* QYCustomView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QYCustomView.h; sourceTree = "<group>"; };
 		CC4F71AD194B0E3800F85BD0 /* QYCustomView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QYCustomView.m; sourceTree = "<group>"; };
+		CC5B43801954297200197FD3 /* libsqlite3.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libsqlite3.dylib; path = usr/lib/libsqlite3.dylib; sourceTree = SDKROOT; };
 		CC624E431942A5A1000D58FE /* 48.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 48.png; sourceTree = "<group>"; };
 		CC624E441942A5A1000D58FE /* about_line.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = about_line.png; sourceTree = "<group>"; };
 		CC624E451942A5A1000D58FE /* about_line@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "about_line@2x.png"; sourceTree = "<group>"; };
@@ -416,6 +425,19 @@
 		CC624F851942F061000D58FE /* SVProgressHUD.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SVProgressHUD.m; sourceTree = "<group>"; };
 		CC624F891943037A000D58FE /* XMLDictionary.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XMLDictionary.h; sourceTree = "<group>"; };
 		CC624F8A1943037A000D58FE /* XMLDictionary.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XMLDictionary.m; sourceTree = "<group>"; };
+		CC7B53E21954193700D49261 /* qy_weibo_client.sqlite */ = {isa = PBXFileReference; lastKnownFileType = file; path = qy_weibo_client.sqlite; sourceTree = "<group>"; };
+		CC7B53E5195422B500D49261 /* FMDatabase.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FMDatabase.h; sourceTree = "<group>"; };
+		CC7B53E6195422B500D49261 /* FMDatabase.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FMDatabase.m; sourceTree = "<group>"; };
+		CC7B53E7195422B500D49261 /* FMDatabaseAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FMDatabaseAdditions.h; sourceTree = "<group>"; };
+		CC7B53E8195422B500D49261 /* FMDatabaseAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FMDatabaseAdditions.m; sourceTree = "<group>"; };
+		CC7B53E9195422B500D49261 /* FMDatabasePool.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FMDatabasePool.h; sourceTree = "<group>"; };
+		CC7B53EA195422B500D49261 /* FMDatabasePool.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FMDatabasePool.m; sourceTree = "<group>"; };
+		CC7B53EB195422B500D49261 /* FMDatabaseQueue.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FMDatabaseQueue.h; sourceTree = "<group>"; };
+		CC7B53EC195422B500D49261 /* FMDatabaseQueue.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FMDatabaseQueue.m; sourceTree = "<group>"; };
+		CC7B53ED195422B500D49261 /* FMResultSet.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FMResultSet.h; sourceTree = "<group>"; };
+		CC7B53EE195422B500D49261 /* FMResultSet.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FMResultSet.m; sourceTree = "<group>"; };
+		CC7B53F41954232F00D49261 /* QYWBDataBaseEngine.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QYWBDataBaseEngine.h; sourceTree = "<group>"; };
+		CC7B53F51954232F00D49261 /* QYWBDataBaseEngine.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QYWBDataBaseEngine.m; sourceTree = "<group>"; };
 		CC9CF45F1941A42E000D26D7 /* QYMainViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QYMainViewController.h; sourceTree = "<group>"; };
 		CC9CF4601941A42E000D26D7 /* QYMainViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QYMainViewController.m; sourceTree = "<group>"; };
 		CC9CF4611941A42E000D26D7 /* QYMainViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = QYMainViewController.xib; sourceTree = "<group>"; };
@@ -481,6 +503,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CC5B43811954297200197FD3 /* libsqlite3.dylib in Frameworks */,
 				CCDB49CB19418E2A002DE823 /* CoreGraphics.framework in Frameworks */,
 				CCDB49CD19418E2A002DE823 /* UIKit.framework in Frameworks */,
 				CCDB49C919418E2A002DE823 /* Foundation.framework in Frameworks */,
@@ -739,6 +762,23 @@
 			path = XMLDictionary;
 			sourceTree = "<group>";
 		};
+		CC7B53E4195422B500D49261 /* FMDB */ = {
+			isa = PBXGroup;
+			children = (
+				CC7B53E5195422B500D49261 /* FMDatabase.h */,
+				CC7B53E6195422B500D49261 /* FMDatabase.m */,
+				CC7B53E7195422B500D49261 /* FMDatabaseAdditions.h */,
+				CC7B53E8195422B500D49261 /* FMDatabaseAdditions.m */,
+				CC7B53E9195422B500D49261 /* FMDatabasePool.h */,
+				CC7B53EA195422B500D49261 /* FMDatabasePool.m */,
+				CC7B53EB195422B500D49261 /* FMDatabaseQueue.h */,
+				CC7B53EC195422B500D49261 /* FMDatabaseQueue.m */,
+				CC7B53ED195422B500D49261 /* FMResultSet.h */,
+				CC7B53EE195422B500D49261 /* FMResultSet.m */,
+			);
+			path = FMDB;
+			sourceTree = "<group>";
+		};
 		CC9CF45E1941A408000D26D7 /* MainViewController */ = {
 			isa = PBXGroup;
 			children = (
@@ -771,6 +811,7 @@
 		CCDB49C719418E2A002DE823 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				CC5B43801954297200197FD3 /* libsqlite3.dylib */,
 				CCDB49C819418E2A002DE823 /* Foundation.framework */,
 				CCDB49CA19418E2A002DE823 /* CoreGraphics.framework */,
 				CCDB49CC19418E2A002DE823 /* UIKit.framework */,
@@ -800,6 +841,7 @@
 		CCDB49CF19418E2A002DE823 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				CC7B53E21954193700D49261 /* qy_weibo_client.sqlite */,
 				CC624F451942AEF1000D58FE /* music */,
 				CC624E421942A5A1000D58FE /* images */,
 				CCDB49D019418E2A002DE823 /* QYWeiBoClient-Info.plist */,
@@ -864,6 +906,7 @@
 		CCDB4A091941906B002DE823 /* Utilities */ = {
 			isa = PBXGroup;
 			children = (
+				CC7B53E4195422B500D49261 /* FMDB */,
 				CC336E1A194E9CE000AF3101 /* Emoji */,
 				CC4F71A8194AFDFC00F85BD0 /* Zn2En */,
 				CC624F881943037A000D58FE /* XMLDictionary */,
@@ -873,6 +916,8 @@
 				CCDB4A0B19419168002DE823 /* QYConstDefine.h */,
 				CCA917E919505273009B3915 /* NSString+FrameHeight.h */,
 				CCA917EA19505273009B3915 /* NSString+FrameHeight.m */,
+				CC7B53F41954232F00D49261 /* QYWBDataBaseEngine.h */,
+				CC7B53F51954232F00D49261 /* QYWBDataBaseEngine.m */,
 			);
 			name = Utilities;
 			sourceTree = "<group>";
@@ -1097,6 +1142,7 @@
 				CC624F3E1942A5A1000D58FE /* userinfo_relationship_indicator_friends.png in Resources */,
 				CC624F1A1942A5A1000D58FE /* tabbar_more@2x.png in Resources */,
 				CC624F0F1942A5A1000D58FE /* tabbar_home_highlighted@2x.png in Resources */,
+				CC7B53E31954193700D49261 /* qy_weibo_client.sqlite in Resources */,
 				CC624F1B1942A5A1000D58FE /* tabbar_more_highlighted.png in Resources */,
 				CCDB4A0519418E5D002DE823 /* SinaWeibo.bundle in Resources */,
 				CC624F261942A5A1000D58FE /* tabbar_slider@2x.png in Resources */,
@@ -1227,6 +1273,8 @@
 			files = (
 				CC336E25194E9CE000AF3101 /* Emoji.m in Sources */,
 				CCBF8F561945D2D000032552 /* QYEditStatusViewController.m in Sources */,
+				CC7B53F0195422B500D49261 /* FMDatabaseAdditions.m in Sources */,
+				CC7B53F2195422B500D49261 /* FMDatabaseQueue.m in Sources */,
 				CC624F791942B133000D58FE /* SDWebImageDownloader.m in Sources */,
 				CC336E29194E9CE000AF3101 /* EmojiTransport.m in Sources */,
 				CCDB49D919418E2A002DE823 /* QYAppDelegate.m in Sources */,
@@ -1237,6 +1285,7 @@
 				CCDB4A2A1941A169002DE823 /* QYAboutMeViewController.m in Sources */,
 				CC624F7F1942B133000D58FE /* UIImage+MultiFormat.m in Sources */,
 				CC624F801942B133000D58FE /* UIImage+WebP.m in Sources */,
+				CC7B53F1195422B500D49261 /* FMDatabasePool.m in Sources */,
 				CCDB4A391941A238002DE823 /* QYViewControllerManager.m in Sources */,
 				CC624F871942F061000D58FE /* SVProgressHUD.m in Sources */,
 				CCDB4A0419418E5D002DE823 /* JSONKit.m in Sources */,
@@ -1253,9 +1302,11 @@
 				CCDB4A201941A103002DE823 /* QYHomeViewController.m in Sources */,
 				CC336E26194E9CE000AF3101 /* EmojiEmoticons.m in Sources */,
 				CCA917EB19505273009B3915 /* NSString+FrameHeight.m in Sources */,
+				CC7B53F61954232F00D49261 /* QYWBDataBaseEngine.m in Sources */,
 				CCDB4A0719418E5D002DE823 /* SinaWeiboAuthorizeView.m in Sources */,
 				CC9CF4621941A42E000D26D7 /* QYMainViewController.m in Sources */,
 				CC624F7B1942B133000D58FE /* SDWebImageManager.m in Sources */,
+				CC7B53EF195422B500D49261 /* FMDatabase.m in Sources */,
 				CC624F781942B133000D58FE /* SDWebImageDecoder.m in Sources */,
 				CC336E27194E9CE000AF3101 /* EmojiMapSymbols.m in Sources */,
 				CC624F7A1942B133000D58FE /* SDWebImageDownloaderOperation.m in Sources */,
@@ -1265,6 +1316,7 @@
 				CCDB4A0819418E5D002DE823 /* SinaWeiboRequest.m in Sources */,
 				CC624F741942B133000D58FE /* MKAnnotationView+WebCache.m in Sources */,
 				CC624F771942B133000D58FE /* SDWebImageCompat.m in Sources */,
+				CC7B53F3195422B500D49261 /* FMResultSet.m in Sources */,
 				CC624F8B1943037A000D58FE /* XMLDictionary.m in Sources */,
 				CC624F7D1942B133000D58FE /* UIButton+WebCache.m in Sources */,
 				CC624F7E1942B133000D58FE /* UIImage+GIF.m in Sources */,

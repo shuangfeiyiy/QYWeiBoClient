@@ -13,6 +13,8 @@
 #define kAppSecret        @"30dac3d5368fbdd37b8034e3431f5ba8"
 #define kAppRedirectURI   @"https://api.weibo.com/oauth2/default.html"
 
+//微博客户端所使用的数据库名字
+static NSString * const kPNWeiBoDataBaseName = @"qy_weibo_client";
 
 static NSString  * const kPNNotificationNameLogin = @"LoginNotification";
 static NSString  * const kPNNotificationNameLogoff = @"LogoffNotification";

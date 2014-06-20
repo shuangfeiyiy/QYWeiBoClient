@@ -15,6 +15,7 @@
 #import "QYAboutMeViewController.h"
 #import "QYStatusTableViewCell.h"
 #import "NSString+FrameHeight.h"
+#import "QYWBDataBaseEngine.h"
 
 @interface QYHomeViewController ()<QYStatusTableViewCellDelegate>
 
@@ -273,7 +274,7 @@ static CGFloat fontSize = 14.0f;
 //当从服务器请求数据，返回的响应头
 - (void)request:(SinaWeiboRequest *)request didReceiveResponse:(NSURLResponse *)response
 {
-  
+    
 }
 
 - (void)request:(SinaWeiboRequest *)request didReceiveRawData:(NSData *)data
@@ -296,6 +297,7 @@ static CGFloat fontSize = 14.0f;
     NSString *indentifierUrl = [[url pathComponents] lastObject];
     if ([indentifierUrl isEqualToString:@"home_timeline.json"]) {
         self.statusList = [result objectForKey:@"statuses"];
+        [[QYWBDataBaseEngine shareInstance] saveTimelinesToDataBase:self.statusList];
         [SVProgressHUD dismiss];
         
     }else if ([indentifierUrl isEqualToString:@"show.json"]){

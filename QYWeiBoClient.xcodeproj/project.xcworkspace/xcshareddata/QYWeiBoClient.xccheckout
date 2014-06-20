@@ -5,13 +5,13 @@
 	<key>IDESourceControlProjectFavoriteDictionaryKey</key>
 	<false/>
 	<key>IDESourceControlProjectIdentifier</key>
-	<string>4AC6A470-F323-454C-9E3E-ED651CD89C82</string>
+	<string>1570E0F3-4C33-49AE-B09E-BDCFDD38E4D7</string>
 	<key>IDESourceControlProjectName</key>
 	<string>QYWeiBoClient</string>
 	<key>IDESourceControlProjectOriginsDictionary</key>
 	<dict>
 		<key>6C49BD57-116A-4177-907E-761A48B65CF7</key>
-		<string>ssh://github.com/shuangfeiyiyu/QYWeiBoClient.git</string>
+		<string>https://github.com/shuangfeiyiy/QYWeiBoClient.git</string>
 	</dict>
 	<key>IDESourceControlProjectPath</key>
 	<string>QYWeiBoClient.xcodeproj/project.xcworkspace</string>
@@ -21,7 +21,7 @@
 		<string>../..</string>
 	</dict>
 	<key>IDESourceControlProjectURL</key>
-	<string>ssh://github.com/shuangfeiyiyu/QYWeiBoClient.git</string>
+	<string>https://github.com/shuangfeiyiy/QYWeiBoClient.git</string>
 	<key>IDESourceControlProjectVersion</key>
 	<integer>110</integer>
 	<key>IDESourceControlProjectWCCIdentifier</key>
