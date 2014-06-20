@@ -86,6 +86,7 @@
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
+    [self onRefreshControl:nil];
 }
 
 - (void)onRefreshControl:(UIRefreshControl*)refreshControl
@@ -95,7 +96,9 @@
         [playSound play];
     }else
     {
-          [SVProgressHUD show];
+        if (![SVProgressHUD isVisible]) {
+            [SVProgressHUD show];
+        }
     }
     [self requstTimelineFromSinaServer];
     [self requestUserInfoFromSinaServer];

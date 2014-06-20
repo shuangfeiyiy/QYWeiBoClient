@@ -235,6 +235,7 @@
 {
     
     [SVProgressHUD showWithStatus:@"正在发送..."];
+//    用于判断当前编辑的微博是否附带有微博图片，如果没有，则调用statuses/update.json。
     if (nil == self.postImages || self.postImages.count == 0) {
         [appDelegate.sinaWeibo requestWithURL:@"statuses/update.json"
                                        params:[NSMutableDictionary dictionaryWithObjectsAndKeys:self.textView.text, @"status", nil]
@@ -381,4 +382,34 @@
     [_textView release];
     [super dealloc];
 }
+
+#pragma mark -
+#pragma mark SinaWeiboRequestDelegate
+//当从服务器请求数据，返回的响应头
+- (void)request:(SinaWeiboRequest *)request didReceiveResponse:(NSURLResponse *)response
+{
+    
+}
+
+- (void)request:(SinaWeiboRequest *)request didReceiveRawData:(NSData *)data
+{
+    
+}
+
+- (void)request:(SinaWeiboRequest *)request didFailWithError:(NSError *)error
+{
+    if (error != nil) {
+        NSLog(@"Request data from sina server error:%@",error);
+        return;
+    }
+    [SVProgressHUD dismissWithError:@"RevData"];
+}
+
+- (void)request:(SinaWeiboRequest *)request didFinishLoadingWithResult:(id)result
+{
+    [SVProgressHUD dismiss];
+    [self dismissViewControllerAnimated:YES completion:nil];
+}
+
+
 @end
