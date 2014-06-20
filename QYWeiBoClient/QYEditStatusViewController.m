@@ -230,7 +230,7 @@
     
 }
 
-
+//普通用户只能发送单张图片， 如果需要发送多张图片，则需要申请
 - (IBAction)onSendButton:(UIButton *)sender
 {
     
