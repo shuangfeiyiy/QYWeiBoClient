@@ -24,15 +24,51 @@
     }
     return self;
 }
+
+
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+
+    self.navigationItem.rightBarButtonItem = self.editButtonItem;
+}
+
+- (void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:YES];
+    //
+    [QYNSDC addObserver:self selector:@selector(onExitClientNotification:) name:kPNNotificationNameLogoff object:nil];
+}
+
+- (void)viewDidDisappear:(BOOL)animated
+{
+    [super viewDidDisappear:YES];
+    [QYNSDC removeObserver:self name:kPNNotificationNameLogoff object:nil];
+}
+
+- (void)setEditing:(BOOL)editing animated:(BOOL)animated
+{
+    UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"提示" message:@"确定注销此账号?" delegate:self cancelButtonTitle:@"取消" otherButtonTitles:@"确定" , nil];
+    [alertView show];
+    QYSafeRelease(alertView);
+}
+
+#pragma mark - UIAlertViewDelegate
+- (void) alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
+{
+    //  如果是确定按纽按下
+    if (buttonIndex == 1) {
+        [appDelegate.sinaWeibo logOut];
+    }
+}
+
+#pragma mark - Notification call back function
+
+- (void)onExitClientNotification:(NSNotification*)notification
+{
     
-    // Uncomment the following line to preserve selection between presentations.
-    // self.clearsSelectionOnViewWillAppear = NO;
+    [QYViewControllerManager  presentQYController:QYControllerTypeLoginView];
     
-    // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-    // self.navigationItem.rightBarButtonItem = self.editButtonItem;
 }
 
 - (void)didReceiveMemoryWarning

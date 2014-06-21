@@ -93,10 +93,12 @@
         NSLog(@"save status to db failed.ERROR:%@",[self.mDb lastErrorMessage]);
         return;
     }
+    
     [self saveUserInfoToDataBase:[dicStatus objectForKey:kStatusUserInfo] withStatusID:[dicStatus objectForKey:kStatusID]];
     //如果当前微博信息有转发微博，需要递归一次，将转发微博的信息也保存到数据库
     NSDictionary *dicRetweetStatus = [dicStatus objectForKey:kStatusRetweetStatus];
     if (dicRetweetStatus != nil) {
+//        这是一种递归调用，递归调用一定有出口条件
         [self saveStatusToDataBase:dicRetweetStatus];
     }else
     {
@@ -115,10 +117,12 @@
 #pragma mark - 将用户信息保存到数据库
 - (void)saveUserInfoToDataBase:(NSDictionary *)dicUserInfo withStatusID:(NSString*)statusID
 {
+//    防御式编程，确保传入的参数是合法
     if (dicUserInfo != nil) {
-        NSString *sql = @"INSERT INTO t_user \
+        NSString *sql = @"INSERT INTO T_USER \
         (id,user_id,screen_name,name,status_id,avatar_large) \
         VALUES (null,?,?,?,?,?)";
+        
         BOOL isOK =  [self.mDb executeUpdate:sql,[dicUserInfo objectForKey:kUserID],
                       [dicUserInfo objectForKey:kUserInfoScreenName],
                       [dicUserInfo objectForKey:kUserInfoName],

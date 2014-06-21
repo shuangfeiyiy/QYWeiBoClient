@@ -29,9 +29,16 @@ static NSString * const kSinaWeiBoAuthData = @"SinaWeiboAuthData";
     [NSUD synchronize];
 }
 
+- (void)removeAuthData:(SinaWeibo*)sinaweibo
+{
+    [NSUD removeObjectForKey:kSinaWeiBoAuthData];
+    [NSUD synchronize];
+    
+}
 - (void)sinaweiboDidLogOut:(SinaWeibo *)sinaweibo
 {
-    
+    [QYNSDC postNotificationName:kPNNotificationNameLogoff object:nil];
+    [self removeAuthData:sinaweibo];
 }
 
 

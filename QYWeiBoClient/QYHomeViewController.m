@@ -31,9 +31,7 @@
         [self.tabBarItem  initWithTitle:@"首页"
                                   image:[UIImage imageNamed:@"tabbar_home"]
                           selectedImage:[UIImage imageNamed:@"tabbar_home_selected"]];
-        _stImageHeight = 0.0f;
-        NSArray *timeLines = [[QYWBDataBaseEngine shareInstance] queryTimeLinesFromDataBase];
-        self.statusList = timeLines;
+        self.statusList = [[QYWBDataBaseEngine shareInstance] queryTimeLinesFromDataBase];
         if (nil == _statusList) {
             [self onRefreshControl:nil];
         }
@@ -295,7 +293,7 @@ static CGFloat fontSize = 14.0f;
         self.statusList = [result objectForKey:@"statuses"];
         [[QYWBDataBaseEngine shareInstance] saveTimelinesToDataBase:self.statusList];
         [SVProgressHUD dismiss];
-        
+        [self.tableView reloadData];
     }else if ([indentifierUrl isEqualToString:@"show.json"]){
         self.currentUserInfo = (NSDictionary*)result;
         UIButton *navTitleBtn =(UIButton*)self.navigationItem.titleView;
@@ -307,8 +305,6 @@ static CGFloat fontSize = 14.0f;
         [self.refreshControl endRefreshing];
     }
     [SVProgressHUD dismiss];
-    self.statusList = [result objectForKey:@"statuses"];
-    [self.tableView reloadData];
 }
 
 #pragma mark -
@@ -380,9 +376,12 @@ static CGFloat fontSize = 14.0f;
         [gestureRecongnizer.view.superview removeFromSuperview];
         
     }];
-    UIWindow *window = [UIApplication sharedApplication].keyWindow;
-    window.userInteractionEnabled = NO;
-    window.multipleTouchEnabled = NO;
+//    之前认为是window如果不设置userInteractionEnabled为NO，为截取事件，所以会导至事件
+//    丢失，但实际情况是不能设置这个值， 因为如果设置为NO，那么事件将传递不出去，所以将此两行
+//    代码注释
+//    UIWindow *window = [UIApplication sharedApplication].keyWindow;
+//    window.userInteractionEnabled = NO;
+//    window.multipleTouchEnabled = NO;
     
 }
 
