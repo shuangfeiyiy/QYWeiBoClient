@@ -8,6 +8,7 @@
 
 #import "QYMoreViewController.h"
 #import "QYAboutClientViewController.h"
+#import "QYDraftsViewController.h"
 
 @interface QYMoreViewController ()
 @property (nonatomic ,retain) NSDictionary *infos;
@@ -166,6 +167,12 @@
 {
     switch (indexPath.section) {
         case 0:
+        {
+            QYDraftsViewController *draftsViewController = [[QYDraftsViewController alloc] init];
+            draftsViewController.hidesBottomBarWhenPushed = YES;
+            [self.navigationController pushViewController:draftsViewController animated:YES];
+            QYSafeRelease(draftsViewController);
+        }
             break;
         default:
         {
