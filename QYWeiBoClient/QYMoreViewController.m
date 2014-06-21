@@ -19,6 +19,7 @@
 {
     self = [super initWithStyle:style];
     if (self) {
+        self.title = @"更多";
         [self.tabBarItem initWithTitle:@"更多"
                                  image:[UIImage imageNamed:@"tabbar_more"]
                          selectedImage:[UIImage imageNamed:@"tabbar_more_selected"]];
@@ -163,10 +164,19 @@
 #pragma mark UITableViewDelegate
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    QYAboutClientViewController *aboutClientViewController = [[QYAboutClientViewController alloc] init];
-    aboutClientViewController.hidesBottomBarWhenPushed = YES;
-    [self.navigationController pushViewController:aboutClientViewController animated:YES];
-    QYSafeRelease(aboutClientViewController);
+    switch (indexPath.section) {
+        case 0:
+            break;
+        default:
+        {
+            QYAboutClientViewController *aboutClientViewController = [[QYAboutClientViewController alloc] init];
+            aboutClientViewController.hidesBottomBarWhenPushed = YES;
+            [self.navigationController pushViewController:aboutClientViewController animated:YES];
+            QYSafeRelease(aboutClientViewController);
+        }
+            break;
+    }
+    
 }
 
 @end
