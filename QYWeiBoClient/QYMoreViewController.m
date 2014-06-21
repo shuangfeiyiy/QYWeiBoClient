@@ -9,7 +9,7 @@
 #import "QYMoreViewController.h"
 
 @interface QYMoreViewController ()
-
+@property (nonatomic ,retain) NSDictionary *infos;
 @end
 
 @implementation QYMoreViewController
@@ -18,9 +18,10 @@
 {
     self = [super initWithStyle:style];
     if (self) {
-        [self.tabBarItem initWithTitle:@"消息"
+        [self.tabBarItem initWithTitle:@"更多"
                                  image:[UIImage imageNamed:@"tabbar_more"]
                          selectedImage:[UIImage imageNamed:@"tabbar_more_selected"]];
+         self.infos = @{@"0": @[@"草稿箱"],@"1":@[@"账号管理"],@"2":@[@"阅读模式",@"主题"],@"3":@[@"隐私设置",@"账号安全",@"设备管理"],@"4":@[@"官方微博",@"意见反馈",@"给我评分",@"新版本检测",@"关于"]};
     }
     return self;
 }
@@ -81,29 +82,86 @@
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
-#warning Potentially incomplete method implementation.
-    // Return the number of sections.
-    return 0;
+    
+    return 5;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-#warning Incomplete method implementation.
-    // Return the number of rows in the section.
-    return 0;
+
+    int ret = 0;
+    switch (section) {
+        case 0:
+        case 1:
+            ret = 1;
+            break;
+        case 2:
+            ret = 2;
+            break;
+        case 3:
+            ret = 3;
+            break;
+        case 4:
+            ret = 5;
+            break;
+        default:
+            break;
+    }
+    return ret;
 }
 
-/*
+
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:<#@"reuseIdentifier"#> forIndexPath:indexPath];
-    
-    // Configure the cell...
-    
+    static NSString *CellIdentifier = @"Cell";
+    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+    if (cell == nil) {
+        cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:CellIdentifier] autorelease];
+        cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+    }
+    NSString *key = [NSString stringWithFormat:@"%ld",indexPath.section];
+    cell.textLabel.text = [[self.infos objectForKey:key] objectAtIndex:indexPath.row];
     return cell;
 }
-*/
 
+
+- (UIView*)tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section
+{
+    if (section == 4) {
+        
+        UIView *view  = [[UIView alloc] initWithFrame:CGRectZero];
+        UIButton *exitBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+        exitBtn.frame = CGRectMake(0, 10, 320, 40);
+        exitBtn.backgroundColor = [UIColor redColor];
+        exitBtn.layer.cornerRadius = 2.0f;
+        exitBtn.titleLabel.textColor = [UIColor whiteColor];
+        exitBtn.titleLabel.font = [UIFont boldSystemFontOfSize:15.0f];
+        [exitBtn setTitle:@"退出当前账号"  forState:UIControlStateNormal];
+        [exitBtn addTarget:self action:@selector(onExitBtnTapped:) forControlEvents:UIControlEventTouchUpInside];
+        [view addSubview:exitBtn];
+        return view;
+    }
+    return nil;
+}
+
+- (void)onExitBtnTapped:(UIButton*)sender
+{
+    
+}
+
+- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
+{
+    //主要是用于修改TableView section之间的间距
+    return 10;
+}
+
+- (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section
+{
+    if (section == 4) {
+        return 60;
+    }
+    return 5.0f;
+}
 /*
 // Override to support conditional editing of the table view.
 - (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath

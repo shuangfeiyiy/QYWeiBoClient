@@ -34,7 +34,7 @@
         [QYViewControllerManager presentQYController:QYControllerTypeUserGuideView];
     }else
     {
-        if (YES) {
+        if ([self.sinaWeibo isLoggedIn]) {
             [QYViewControllerManager presentQYController:QYControllerTypeMainView];
         }else
         {
