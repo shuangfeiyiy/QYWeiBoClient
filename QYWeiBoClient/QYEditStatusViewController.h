@@ -9,4 +9,6 @@
 #import <UIKit/UIKit.h>
 
 @interface QYEditStatusViewController : UIViewController<UINavigationControllerDelegate,UIImagePickerControllerDelegate>
+
+@property (nonatomic, retain) NSDictionary *mDicStatus;
 @end

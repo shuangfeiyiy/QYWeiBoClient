@@ -22,7 +22,7 @@
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
-        // Custom initialization
+        self.title = @"草稿箱";
     }
     return self;
 }
@@ -59,6 +59,7 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     QYEditStatusViewController *editStatusVCTrl = [[QYEditStatusViewController alloc] init];
+    editStatusVCTrl.mDicStatus = self.dratfStatus[indexPath.row];
     [self.navigationController pushViewController:editStatusVCTrl animated:YES];
     QYSafeRelease(editStatusVCTrl);
 }

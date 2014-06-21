@@ -214,10 +214,13 @@ static CGFloat fontSize = 14.0f;
     [retsweetBtn setImage:[UIImage imageNamed:@"timeline_icon_retweet_os7"] forState:UIControlStateNormal];
     NSString *retweetButtonTitle =[NSString stringWithFormat:@"%@",[self.statusList[section] objectForKey:kStatusRepostsCount]];
     [retsweetBtn setTitle: retweetButtonTitle forState:UIControlStateNormal];
+    [retsweetBtn setTitle:retweetButtonTitle forState:UIControlStateHighlighted];
     [retsweetBtn setImageEdgeInsets:UIEdgeInsetsMake(0, 20, 0, 50)];
     [retsweetBtn setTitleEdgeInsets:UIEdgeInsetsMake(0, 15, 0, 20)];
     retsweetBtn.titleLabel.font = [UIFont systemFontOfSize:13.0f];
     retsweetBtn.titleLabel.textColor = [UIColor darkGrayColor];
+    [retsweetBtn setTitleColor:[UIColor darkGrayColor] forState:UIControlStateHighlighted];
+    [retsweetBtn setTitleColor:[UIColor darkGrayColor] forState:UIControlStateNormal];
     retsweetBtn.tag = section;
     [retsweetBtn addTarget:self action:@selector(onRetweetButtonTapped:) forControlEvents:UIControlEventTouchUpInside];
     [footerView addSubview:retsweetBtn];
@@ -260,7 +263,10 @@ static CGFloat fontSize = 14.0f;
 #pragma mark Function callback
 - (void)onRetweetButtonTapped:(UIButton*)retweetButton
 {
-    
+    QYEditStatusViewController *editViewController = [[QYEditStatusViewController alloc] init];
+    editViewController.mDicStatus = self.statusList[retweetButton.tag];
+    [self.navigationController pushViewController:editViewController animated:YES];
+    QYSafeRelease(editViewController);
 }
 
 #pragma mark -

@@ -10,6 +10,8 @@
 #import "SVProgressHUD.h"
 #import "QYFriendViewController.h"
 #import "QYEmojiPageView.h"
+#import "UIImageView+WebCache.h"
+#import "NSString+FrameHeight.h"
 
 //extern CGFloat fontSize;
 //#define __USE_IMAGEPICKER_AS_SUBVIEW
@@ -25,7 +27,9 @@
 @end
 
 @implementation QYEditStatusViewController
-
+{
+    UIView *retweetBgView;
+}
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
@@ -61,8 +65,66 @@
         self.sendButton.enabled = NO;
         [self.sendButton setTitleColor:[UIColor lightGrayColor] forState:UIControlStateNormal];
     }
+    [self showEditStatusView];
     
 }
+
+
+- (void)showEditStatusView
+{
+    if (self.mDicStatus != nil) {
+        self.textView.text = [self.mDicStatus objectForKey:@"text"];
+        
+        CGFloat textViewHeight = [self.textView.text frameHeightWithFontSize:14.0f forViewWidth:300.0f];
+        retweetBgView = [[UIView alloc] initWithFrame:CGRectMake(0, textViewHeight+10, 300, 80)];
+        retweetBgView.layer.borderColor = [UIColor lightGrayColor].CGColor;
+        retweetBgView.layer.borderWidth = 0.5f;
+        UIImageView *thumbImageView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, 80, 80)];
+        [retweetBgView addSubview:thumbImageView];
+        [thumbImageView release];
+        
+        UILabel *retweetUserName = [[UILabel alloc] initWithFrame:CGRectMake(CGRectGetMaxX(thumbImageView.frame)+10, 10, 200, 20)];
+        [retweetBgView addSubview:retweetUserName];
+        
+        UILabel *retweetStatusText = [[UILabel alloc] initWithFrame:CGRectMake(retweetUserName.frame.origin.x, CGRectGetMaxY(retweetUserName.frame)+5, 200, 40)];
+        retweetStatusText.numberOfLines = 2;
+        retweetStatusText.textColor = [UIColor lightGrayColor];
+        retweetStatusText.font = [UIFont systemFontOfSize:13.0f];
+        [retweetBgView addSubview:retweetStatusText];
+        
+        NSDictionary *dicRetweetStatus = [self.mDicStatus objectForKey:kStatusRetweetStatus];
+        //      如果被转发的微博包含转发微博，那么当前转发内容需要附带被转发微博的转发微博
+        if (dicRetweetStatus != nil) {
+            //            如果被转发的微博转发的内容有图片，则提取出此图片，如果没有图片，则使用被转发用户的头像作为图片。
+            NSArray *arrayPicUrls = [dicRetweetStatus objectForKey:kStatusPicUrls];
+            if (arrayPicUrls != nil && arrayPicUrls.count > 0) {
+                NSURL *imgUrl =[NSURL URLWithString:[[arrayPicUrls objectAtIndex:0] objectForKey:kStatusThumbnailPic]];
+                UIImage *img = [[UIImage alloc] initWithData:[NSData dataWithContentsOfURL:imgUrl]];
+                thumbImageView.image = img;
+            }else
+            {
+                [thumbImageView setImageWithURL:[NSURL URLWithString:[[dicRetweetStatus objectForKey:kStatusUserInfo] objectForKey:kUserAvatarLarge]]];
+            }
+            retweetUserName.text = [[dicRetweetStatus objectForKey:kStatusUserInfo] objectForKey:kUserInfoScreenName];
+            retweetStatusText.text = [dicRetweetStatus objectForKey:kStatusText];
+            
+        }else{
+            //如果没有转发微博，则使用被转发的微博博主的头像作为图片。
+            if (thumbImageView.image == nil) {
+                [thumbImageView setImageWithURL:[NSURL URLWithString:[[self.mDicStatus objectForKey:kStatusUserInfo] objectForKey:kUserAvatarLarge]]];
+            }
+            retweetUserName.text = [[self.mDicStatus objectForKey:kStatusUserInfo] objectForKey:kUserInfoScreenName];
+            retweetStatusText.text = [self.mDicStatus objectForKey:kStatusText];
+            
+        }
+        [self.textView addSubview:retweetBgView];
+        
+        [retweetUserName release];
+        [retweetStatusText release];
+    }
+
+}
+
 
 - (void)viewDidDisappear:(BOOL)animated
 {
