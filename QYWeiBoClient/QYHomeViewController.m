@@ -210,6 +210,7 @@ static CGFloat fontSize = 14.0f;
     footerView.layer.borderWidth = 0.5f;
     footerView.backgroundColor = [UIColor whiteColor];
     
+//  转发微博按纽
     UIButton *retsweetBtn = [[UIButton alloc] initWithFrame:CGRectMake(20, 2.5, 90, 30)];
     [retsweetBtn setImage:[UIImage imageNamed:@"timeline_icon_retweet_os7"] forState:UIControlStateNormal];
     NSString *retweetButtonTitle =[NSString stringWithFormat:@"%@",[self.statusList[section] objectForKey:kStatusRepostsCount]];
@@ -224,7 +225,8 @@ static CGFloat fontSize = 14.0f;
     retsweetBtn.tag = section;
     [retsweetBtn addTarget:self action:@selector(onRetweetButtonTapped:) forControlEvents:UIControlEventTouchUpInside];
     [footerView addSubview:retsweetBtn];
-    
+
+//  评论微博按纽
     UIButton *commentBtn = [[UIButton alloc] initWithFrame:CGRectMake(CGRectGetMaxX(retsweetBtn.frame)+10, 2.5, 90, 30)];
     [commentBtn setImage:[UIImage imageNamed:@"timeline_icon_comment_os7"] forState:UIControlStateNormal];
     NSString *commentButtonTitle =[NSString stringWithFormat:@"%@",[self.statusList[section] objectForKey:kStatusCommentsCount]];
@@ -234,19 +236,48 @@ static CGFloat fontSize = 14.0f;
     commentBtn.titleLabel.font = [UIFont systemFontOfSize:fontSize];
     commentBtn.titleLabel.textColor = [UIColor darkGrayColor];
     [footerView addSubview:commentBtn];
-    
+
+//  赞微博按纽
     UIButton *attitudesBtn = [[UIButton alloc] initWithFrame:CGRectMake(CGRectGetMaxX(commentBtn.frame) + 10,2.5,90,30)];
+    attitudesBtn.tag = section;
     [attitudesBtn setImage:[UIImage imageNamed:@"timeline_icon_unlike_os7"] forState:UIControlStateNormal];
+    [attitudesBtn setImage:[UIImage imageNamed:@"timeline_icon_unlike"] forState:UIControlStateSelected];
+    [attitudesBtn setImage:[UIImage imageNamed:@"timeline_icon_unlike"] forState:UIControlStateHighlighted];
     NSString *attitudesButtonTitle =[NSString stringWithFormat:@"%@",[self.statusList[section] objectForKey:kStatusAttitudesCount]];
     [attitudesBtn setTitle: attitudesButtonTitle forState:UIControlStateNormal];
+    [attitudesBtn setTitle:attitudesButtonTitle forState:UIControlStateHighlighted];
+    
+    [attitudesBtn setTitleColor:[UIColor darkGrayColor] forState:UIControlStateHighlighted];
+    [attitudesBtn setTitleColor:[UIColor darkGrayColor] forState:UIControlStateSelected];
+    [attitudesBtn setTitleColor:[UIColor darkGrayColor] forState:UIControlStateNormal];
     [attitudesBtn setImageEdgeInsets:UIEdgeInsetsMake(0, 20, 0, 50)];
     [attitudesBtn setTitleEdgeInsets:UIEdgeInsetsMake(0, 15, 0, 0)];
+   
     attitudesBtn.titleLabel.font = [UIFont systemFontOfSize:fontSize];
     attitudesBtn.titleLabel.textColor = [UIColor darkGrayColor];
+    [attitudesBtn addTarget:self action:@selector(onAttitudeBtn:) forControlEvents:UIControlEventTouchUpInside];
     [footerView addSubview:attitudesBtn];
     
     return footerView;
     
+}
+
+//当点击赞的时候，实现点赞数量的变化
+- (void)onAttitudeBtn:(UIButton*)sender
+{
+    NSInteger nAttitudesCount;
+    if (sender.selected) {
+        sender.selected = NO;
+        nAttitudesCount = [[sender titleForState:UIControlStateSelected] integerValue];
+        nAttitudesCount--;
+        [sender setTitle:[NSString stringWithFormat:@"%d",nAttitudesCount] forState:UIControlStateNormal];
+    }else{
+        nAttitudesCount = [[sender titleForState:UIControlStateNormal] integerValue];
+        nAttitudesCount++;
+        sender.selected = YES;
+        [sender setTitle:[NSString stringWithFormat:@"%d",nAttitudesCount] forState:UIControlStateSelected];
+    }
+    //需要调用微博接口实现数据的上传
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section
