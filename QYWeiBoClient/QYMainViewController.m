@@ -13,7 +13,7 @@
 #import "QYAboutMeViewController.h"
 #import "QYPlazaViewController.h"
 #import "QYMoreViewController.h"
-
+#import "QYPlazaViewLayout.h"
 
 @interface QYMainViewController ()
 
@@ -40,7 +40,7 @@
     
     QYAboutMeViewController *aboutMeVCtrl = [[QYAboutMeViewController alloc] initWithStyle:UITableViewStyleGrouped];
     
-    QYPlazaViewController *plazaVCtrl = [[QYPlazaViewController alloc] initWithCollectionViewLayout:[[UICollectionViewFlowLayout alloc] init]];
+    QYPlazaViewController *plazaVCtrl = [[QYPlazaViewController alloc] initWithCollectionViewLayout:[[QYPlazaViewLayout alloc] init]];
     
     QYMoreViewController *moreVCtrl = [[QYMoreViewController alloc] init];
     

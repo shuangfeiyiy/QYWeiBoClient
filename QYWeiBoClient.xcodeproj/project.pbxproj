@@ -178,6 +178,11 @@
 		CC72654519557D440076D243 /* QYSmartTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = CC72654419557D440076D243 /* QYSmartTableViewCell.m */; };
 		CC72654919557DC60076D243 /* QYDraftsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CC72654719557DC60076D243 /* QYDraftsViewController.m */; };
 		CC72654A19557DC60076D243 /* QYDraftsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = CC72654819557DC60076D243 /* QYDraftsViewController.xib */; };
+		CC7265531955AF190076D243 /* QYCollectionViewCellSectionFour.m in Sources */ = {isa = PBXBuildFile; fileRef = CC72654C1955AF190076D243 /* QYCollectionViewCellSectionFour.m */; };
+		CC7265541955AF190076D243 /* QYCollectionViewCellSectionOne.m in Sources */ = {isa = PBXBuildFile; fileRef = CC72654E1955AF190076D243 /* QYCollectionViewCellSectionOne.m */; };
+		CC7265551955AF190076D243 /* QYCollectionViewCellSectionThree.m in Sources */ = {isa = PBXBuildFile; fileRef = CC7265501955AF190076D243 /* QYCollectionViewCellSectionThree.m */; };
+		CC7265561955AF190076D243 /* QYCollectionViewCellSectionTwo.m in Sources */ = {isa = PBXBuildFile; fileRef = CC7265521955AF190076D243 /* QYCollectionViewCellSectionTwo.m */; };
+		CC7265591955AFEE0076D243 /* QYPlazaViewLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = CC7265581955AFEE0076D243 /* QYPlazaViewLayout.m */; };
 		CC7B53E31954193700D49261 /* qy_weibo_client.sqlite in Resources */ = {isa = PBXBuildFile; fileRef = CC7B53E21954193700D49261 /* qy_weibo_client.sqlite */; };
 		CC7B53EF195422B500D49261 /* FMDatabase.m in Sources */ = {isa = PBXBuildFile; fileRef = CC7B53E6195422B500D49261 /* FMDatabase.m */; };
 		CC7B53F0195422B500D49261 /* FMDatabaseAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = CC7B53E8195422B500D49261 /* FMDatabaseAdditions.m */; };
@@ -438,6 +443,16 @@
 		CC72654619557DC60076D243 /* QYDraftsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QYDraftsViewController.h; sourceTree = "<group>"; };
 		CC72654719557DC60076D243 /* QYDraftsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QYDraftsViewController.m; sourceTree = "<group>"; };
 		CC72654819557DC60076D243 /* QYDraftsViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = QYDraftsViewController.xib; sourceTree = "<group>"; };
+		CC72654B1955AF190076D243 /* QYCollectionViewCellSectionFour.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QYCollectionViewCellSectionFour.h; sourceTree = "<group>"; };
+		CC72654C1955AF190076D243 /* QYCollectionViewCellSectionFour.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QYCollectionViewCellSectionFour.m; sourceTree = "<group>"; };
+		CC72654D1955AF190076D243 /* QYCollectionViewCellSectionOne.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QYCollectionViewCellSectionOne.h; sourceTree = "<group>"; };
+		CC72654E1955AF190076D243 /* QYCollectionViewCellSectionOne.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QYCollectionViewCellSectionOne.m; sourceTree = "<group>"; };
+		CC72654F1955AF190076D243 /* QYCollectionViewCellSectionThree.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QYCollectionViewCellSectionThree.h; sourceTree = "<group>"; };
+		CC7265501955AF190076D243 /* QYCollectionViewCellSectionThree.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QYCollectionViewCellSectionThree.m; sourceTree = "<group>"; };
+		CC7265511955AF190076D243 /* QYCollectionViewCellSectionTwo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QYCollectionViewCellSectionTwo.h; sourceTree = "<group>"; };
+		CC7265521955AF190076D243 /* QYCollectionViewCellSectionTwo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QYCollectionViewCellSectionTwo.m; sourceTree = "<group>"; };
+		CC7265571955AFEE0076D243 /* QYPlazaViewLayout.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QYPlazaViewLayout.h; sourceTree = "<group>"; };
+		CC7265581955AFEE0076D243 /* QYPlazaViewLayout.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QYPlazaViewLayout.m; sourceTree = "<group>"; };
 		CC7B53E21954193700D49261 /* qy_weibo_client.sqlite */ = {isa = PBXFileReference; lastKnownFileType = file; path = qy_weibo_client.sqlite; sourceTree = "<group>"; };
 		CC7B53E5195422B500D49261 /* FMDatabase.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FMDatabase.h; sourceTree = "<group>"; };
 		CC7B53E6195422B500D49261 /* FMDatabase.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FMDatabase.m; sourceTree = "<group>"; };
@@ -1016,6 +1031,16 @@
 		CCDB4A111941A00D002DE823 /* Plaza */ = {
 			isa = PBXGroup;
 			children = (
+				CC72654B1955AF190076D243 /* QYCollectionViewCellSectionFour.h */,
+				CC72654C1955AF190076D243 /* QYCollectionViewCellSectionFour.m */,
+				CC72654D1955AF190076D243 /* QYCollectionViewCellSectionOne.h */,
+				CC72654E1955AF190076D243 /* QYCollectionViewCellSectionOne.m */,
+				CC72654F1955AF190076D243 /* QYCollectionViewCellSectionThree.h */,
+				CC7265501955AF190076D243 /* QYCollectionViewCellSectionThree.m */,
+				CC7265511955AF190076D243 /* QYCollectionViewCellSectionTwo.h */,
+				CC7265521955AF190076D243 /* QYCollectionViewCellSectionTwo.m */,
+				CC7265571955AFEE0076D243 /* QYPlazaViewLayout.h */,
+				CC7265581955AFEE0076D243 /* QYPlazaViewLayout.m */,
 				CCDB4A2C1941A192002DE823 /* QYPlazaViewController.h */,
 				CCDB4A2D1941A192002DE823 /* QYPlazaViewController.m */,
 				CCDB4A2E1941A192002DE823 /* QYPlazaViewController.xib */,
@@ -1300,8 +1325,11 @@
 				CC7B53F0195422B500D49261 /* FMDatabaseAdditions.m in Sources */,
 				CC7B53F2195422B500D49261 /* FMDatabaseQueue.m in Sources */,
 				CC624F791942B133000D58FE /* SDWebImageDownloader.m in Sources */,
+				CC7265541955AF190076D243 /* QYCollectionViewCellSectionOne.m in Sources */,
 				CC336E29194E9CE000AF3101 /* EmojiTransport.m in Sources */,
+				CC7265591955AFEE0076D243 /* QYPlazaViewLayout.m in Sources */,
 				CCDB49D919418E2A002DE823 /* QYAppDelegate.m in Sources */,
+				CC7265551955AF190076D243 /* QYCollectionViewCellSectionThree.m in Sources */,
 				CCDB49D519418E2A002DE823 /* main.m in Sources */,
 				CC624F7C1942B133000D58FE /* SDWebImagePrefetcher.m in Sources */,
 				CC336E2F194FE3D200AF3101 /* QYStatusTableViewCell.m in Sources */,
@@ -1310,6 +1338,7 @@
 				CC624F7F1942B133000D58FE /* UIImage+MultiFormat.m in Sources */,
 				CC624F801942B133000D58FE /* UIImage+WebP.m in Sources */,
 				CC7B53F1195422B500D49261 /* FMDatabasePool.m in Sources */,
+				CC7265561955AF190076D243 /* QYCollectionViewCellSectionTwo.m in Sources */,
 				CCDB4A391941A238002DE823 /* QYViewControllerManager.m in Sources */,
 				CC624F871942F061000D58FE /* SVProgressHUD.m in Sources */,
 				CCDB4A0419418E5D002DE823 /* JSONKit.m in Sources */,
@@ -1330,6 +1359,7 @@
 				CC7B53F61954232F00D49261 /* QYWBDataBaseEngine.m in Sources */,
 				CCDB4A0719418E5D002DE823 /* SinaWeiboAuthorizeView.m in Sources */,
 				CC9CF4621941A42E000D26D7 /* QYMainViewController.m in Sources */,
+				CC7265531955AF190076D243 /* QYCollectionViewCellSectionFour.m in Sources */,
 				CC624F7B1942B133000D58FE /* SDWebImageManager.m in Sources */,
 				CC7B53EF195422B500D49261 /* FMDatabase.m in Sources */,
 				CC624F781942B133000D58FE /* SDWebImageDecoder.m in Sources */,
