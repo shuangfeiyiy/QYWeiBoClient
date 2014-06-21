@@ -173,6 +173,8 @@
 		CC624F861942F061000D58FE /* SVProgressHUD.bundle in Resources */ = {isa = PBXBuildFile; fileRef = CC624F831942F061000D58FE /* SVProgressHUD.bundle */; };
 		CC624F871942F061000D58FE /* SVProgressHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = CC624F851942F061000D58FE /* SVProgressHUD.m */; };
 		CC624F8B1943037A000D58FE /* XMLDictionary.m in Sources */ = {isa = PBXBuildFile; fileRef = CC624F8A1943037A000D58FE /* XMLDictionary.m */; settings = {COMPILER_FLAGS = "-fobjc-arc"; }; };
+		CC726541195567AD0076D243 /* QYAboutClientViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CC72653F195567AD0076D243 /* QYAboutClientViewController.m */; };
+		CC726542195567AD0076D243 /* QYAboutClientViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = CC726540195567AD0076D243 /* QYAboutClientViewController.xib */; };
 		CC7B53E31954193700D49261 /* qy_weibo_client.sqlite in Resources */ = {isa = PBXBuildFile; fileRef = CC7B53E21954193700D49261 /* qy_weibo_client.sqlite */; };
 		CC7B53EF195422B500D49261 /* FMDatabase.m in Sources */ = {isa = PBXBuildFile; fileRef = CC7B53E6195422B500D49261 /* FMDatabase.m */; };
 		CC7B53F0195422B500D49261 /* FMDatabaseAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = CC7B53E8195422B500D49261 /* FMDatabaseAdditions.m */; };
@@ -425,6 +427,9 @@
 		CC624F851942F061000D58FE /* SVProgressHUD.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SVProgressHUD.m; sourceTree = "<group>"; };
 		CC624F891943037A000D58FE /* XMLDictionary.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XMLDictionary.h; sourceTree = "<group>"; };
 		CC624F8A1943037A000D58FE /* XMLDictionary.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XMLDictionary.m; sourceTree = "<group>"; };
+		CC72653E195567AD0076D243 /* QYAboutClientViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QYAboutClientViewController.h; sourceTree = "<group>"; };
+		CC72653F195567AD0076D243 /* QYAboutClientViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QYAboutClientViewController.m; sourceTree = "<group>"; };
+		CC726540195567AD0076D243 /* QYAboutClientViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = QYAboutClientViewController.xib; sourceTree = "<group>"; };
 		CC7B53E21954193700D49261 /* qy_weibo_client.sqlite */ = {isa = PBXFileReference; lastKnownFileType = file; path = qy_weibo_client.sqlite; sourceTree = "<group>"; };
 		CC7B53E5195422B500D49261 /* FMDatabase.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FMDatabase.h; sourceTree = "<group>"; };
 		CC7B53E6195422B500D49261 /* FMDatabase.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FMDatabase.m; sourceTree = "<group>"; };
@@ -1014,6 +1019,9 @@
 				CCDB4A311941A1AE002DE823 /* QYMoreViewController.h */,
 				CCDB4A321941A1AE002DE823 /* QYMoreViewController.m */,
 				CCDB4A331941A1AE002DE823 /* QYMoreViewController.xib */,
+				CC72653E195567AD0076D243 /* QYAboutClientViewController.h */,
+				CC72653F195567AD0076D243 /* QYAboutClientViewController.m */,
+				CC726540195567AD0076D243 /* QYAboutClientViewController.xib */,
 			);
 			name = More;
 			sourceTree = "<group>";
@@ -1154,6 +1162,7 @@
 				CC624F2B1942A5A1000D58FE /* timeline_card_trend_button.png in Resources */,
 				CC624F521942AEF1000D58FE /* prlm_sound_triggering.wav in Resources */,
 				CC624EEE1942A5A1000D58FE /* popmenu3@2x.png in Resources */,
+				CC726542195567AD0076D243 /* QYAboutClientViewController.xib in Resources */,
 				CC624EE01942A5A1000D58FE /* navigationbar_button_background.png in Resources */,
 				CC624F861942F061000D58FE /* SVProgressHUD.bundle in Resources */,
 				CC624EF21942A5A1000D58FE /* sdk_app_info_background.png in Resources */,
@@ -1318,6 +1327,7 @@
 				CC624F771942B133000D58FE /* SDWebImageCompat.m in Sources */,
 				CC7B53F3195422B500D49261 /* FMResultSet.m in Sources */,
 				CC624F8B1943037A000D58FE /* XMLDictionary.m in Sources */,
+				CC726541195567AD0076D243 /* QYAboutClientViewController.m in Sources */,
 				CC624F7D1942B133000D58FE /* UIButton+WebCache.m in Sources */,
 				CC624F7E1942B133000D58FE /* UIImage+GIF.m in Sources */,
 				CC624F761942B133000D58FE /* SDImageCache.m in Sources */,

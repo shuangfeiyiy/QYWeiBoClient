@@ -8,6 +8,21 @@
 
 #import "QYPlazaViewController.h"
 
+#define  FOUR_CELL_IDENTIFIER   @"CollectionViewCellSectionFour"
+#define  THREE_CELL_IDENTIFIER  @"CollectionViewCellSectionThree"
+#define  TWO_CELL_IDENTIFIER    @"CollectionViewCellSectionTwo"
+#define  ONE_CELL_IDENTIFIER    @"CollectionViewCellSectionOne"
+
+
+typedef enum  {
+    kPNCollectionViewCellSectionOne,
+    kPNCollectionViewCellSectionTwo,
+    kPNCollectionViewCellSectionThree,
+    kPNCollectionViewCellSectionFour,
+    kPNCollectionViewCellSectionNumbers
+} CollectionSectionStyle;
+
+
 @interface QYPlazaViewController ()
 
 @end

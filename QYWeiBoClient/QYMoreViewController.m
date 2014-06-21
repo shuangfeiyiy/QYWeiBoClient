@@ -7,6 +7,7 @@
 //
 
 #import "QYMoreViewController.h"
+#import "QYAboutClientViewController.h"
 
 @interface QYMoreViewController ()
 @property (nonatomic ,retain) NSDictionary *infos;
@@ -21,6 +22,7 @@
         [self.tabBarItem initWithTitle:@"更多"
                                  image:[UIImage imageNamed:@"tabbar_more"]
                          selectedImage:[UIImage imageNamed:@"tabbar_more_selected"]];
+        
          self.infos = @{@"0": @[@"草稿箱"],@"1":@[@"账号管理"],@"2":@[@"阅读模式",@"主题"],@"3":@[@"隐私设置",@"账号安全",@"设备管理"],@"4":@[@"官方微博",@"意见反馈",@"给我评分",@"新版本检测",@"关于"]};
     }
     return self;
@@ -30,8 +32,6 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-
-    self.navigationItem.rightBarButtonItem = self.editButtonItem;
 }
 
 - (void)viewWillAppear:(BOOL)animated
@@ -45,13 +45,6 @@
 {
     [super viewDidDisappear:YES];
     [QYNSDC removeObserver:self name:kPNNotificationNameLogoff object:nil];
-}
-
-- (void)setEditing:(BOOL)editing animated:(BOOL)animated
-{
-    UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"提示" message:@"确定注销此账号?" delegate:self cancelButtonTitle:@"取消" otherButtonTitles:@"确定" , nil];
-    [alertView show];
-    QYSafeRelease(alertView);
 }
 
 #pragma mark - UIAlertViewDelegate
@@ -92,6 +85,7 @@
     int ret = 0;
     switch (section) {
         case 0:
+//            此处没有break
         case 1:
             ret = 1;
             break;
@@ -119,7 +113,7 @@
         cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:CellIdentifier] autorelease];
         cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
     }
-    NSString *key = [NSString stringWithFormat:@"%ld",indexPath.section];
+    NSString *key = [NSString stringWithFormat:@"%d",indexPath.section];
     cell.textLabel.text = [[self.infos objectForKey:key] objectAtIndex:indexPath.row];
     return cell;
 }
@@ -146,7 +140,9 @@
 
 - (void)onExitBtnTapped:(UIButton*)sender
 {
-    
+    UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"提示" message:@"确定注销此账号?" delegate:self cancelButtonTitle:@"取消" otherButtonTitles:@"确定" , nil];
+    [alertView show];
+    QYSafeRelease(alertView);
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
@@ -162,59 +158,15 @@
     }
     return 5.0f;
 }
-/*
-// Override to support conditional editing of the table view.
-- (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    // Return NO if you do not want the specified item to be editable.
-    return YES;
-}
-*/
 
-/*
-// Override to support editing the table view.
-- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    if (editingStyle == UITableViewCellEditingStyleDelete) {
-        // Delete the row from the data source
-        [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
-    } else if (editingStyle == UITableViewCellEditingStyleInsert) {
-        // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-    }   
-}
-*/
-
-/*
-// Override to support rearranging the table view.
-- (void)tableView:(UITableView *)tableView moveRowAtIndexPath:(NSIndexPath *)fromIndexPath toIndexPath:(NSIndexPath *)toIndexPath
-{
-}
-*/
-
-/*
-// Override to support conditional rearranging of the table view.
-- (BOOL)tableView:(UITableView *)tableView canMoveRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    // Return NO if you do not want the item to be re-orderable.
-    return YES;
-}
-*/
-
-/*
-#pragma mark - Table view delegate
-
-// In a xib-based application, navigation from a table can be handled in -tableView:didSelectRowAtIndexPath:
+#pragma mark -
+#pragma mark UITableViewDelegate
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    // Navigation logic may go here, for example:
-    // Create the next view controller.
-    <#DetailViewController#> *detailViewController = [[<#DetailViewController#> alloc] initWithNibName:<#@"Nib name"#> bundle:nil];
-    
-    // Pass the selected object to the new view controller.
-    
-    // Push the view controller.
-    [self.navigationController pushViewController:detailViewController animated:YES];
+    QYAboutClientViewController *aboutClientViewController = [[QYAboutClientViewController alloc] init];
+    aboutClientViewController.hidesBottomBarWhenPushed = YES;
+    [self.navigationController pushViewController:aboutClientViewController animated:YES];
+    QYSafeRelease(aboutClientViewController);
 }
-*/
 
 @end
