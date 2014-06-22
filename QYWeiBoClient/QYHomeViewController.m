@@ -16,6 +16,7 @@
 #import "QYStatusTableViewCell.h"
 #import "NSString+FrameHeight.h"
 #import "QYWBDataBaseEngine.h"
+#import "TSActionSheet.h"
 
 @interface QYHomeViewController ()<QYStatusTableViewCellDelegate,NSURLConnectionDataDelegate>
 
@@ -50,7 +51,7 @@
     self.refreshControl = refreshControl;
     [refreshControl release];
     
-    UIBarButtonItem *rightItem = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"navigationbar_pop_os7"] style:UIBarButtonItemStylePlain target:self action:@selector(onRightButtonItem:)];
+    UIBarButtonItem *rightItem = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"navigationbar_pop_os7"] style:UIBarButtonItemStylePlain target:self action:@selector(onRightButtonItem:forEvent:)];
     self.navigationItem.rightBarButtonItem = rightItem;
     
     UIButton *btnTitle = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 100, 40)];
@@ -69,12 +70,49 @@
 
 -(void) onTitleButtonTapped:(UIButton*)sender forEvent:(UIEvent*)event
 {
+    TSActionSheet *actionSheet = [[TSActionSheet alloc] initWithTitle:@""];
+    actionSheet.titleFont = [UIFont boldSystemFontOfSize:14.0f];
+    actionSheet.popoverBaseColor = [UIColor darkGrayColor];
+    CGRect oldFrame = actionSheet.frame;
+    CGRect newFrame = (CGRect){oldFrame.origin,160,oldFrame.size.height};
+    actionSheet.frame = newFrame;
+    [actionSheet addButtonWithTitle:@"时间排序" block:^{
+        NSLog(@"pushed hoge1 button");
+    }];
+    [actionSheet addButtonWithTitle:@"智能排序" block:^{
+        NSLog(@"pushed hoge2 button");
+    }];
+    [actionSheet addButtonWithTitle:@"我的微博" block:^{
+        NSLog(@"pushed hoge2 button");
+    }];
+    [actionSheet addButtonWithTitle:@"密友圈" block:^{
+        NSLog(@"pushed hoge2 button");
+    }];
     
+    [actionSheet addButtonWithTitle:@"互相关注" block:^{
+        NSLog(@"pushed hoge2 button");
+    }];
+    actionSheet.cornerRadius = 1.0f;
+    [actionSheet showWithTouch:event];
+
 }
 
-- (void)onRightButtonItem:(UIBarButtonItem*)sender
+- (void)onRightButtonItem:(UIBarButtonItem*)sender forEvent:(UIEvent*)event
 {
+    TSActionSheet *actionSheet = [[TSActionSheet alloc] initWithTitle:@""];
+    actionSheet.popoverBaseColor = [UIColor darkGrayColor];
+    CGRect oldFrame = actionSheet.frame;
+    CGRect newFrame = (CGRect){oldFrame.origin,130,oldFrame.size.height};
+    actionSheet.frame = newFrame;
     
+    [actionSheet addButtonWithTitle:@"刷新" block:^{
+        [self onRefreshControl:self.refreshControl];
+    }];
+    [actionSheet addButtonWithTitle:@"扫-扫" block:^{
+        NSLog(@"pushed hoge1 button");
+    }];
+    actionSheet.cornerRadius = 2.0f;
+    [actionSheet showWithTouch:event];
 }
 
 - (void)onLeftButtonItem:(UIBarButtonItem*)sender

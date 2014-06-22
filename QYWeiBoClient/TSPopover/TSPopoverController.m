@@ -54,7 +54,7 @@
         }
         self.view.frame = screenRect;
         screenRect.origin.y = 0;
-        screenRect.size.height = screenRect.size.height-20;   
+        screenRect.size.height = screenRect.size.height-20;
         
         titleLabelheight = 0;
 	}
@@ -148,18 +148,19 @@
         backgroundPositionY = ARROW_SIZE;
     }
     
-    UILabel *titleLabel = nil;
-    if(self.titleText){
-        titleLabel = [[UILabel alloc] initWithFrame:CGRectMake(backgroundPositionX, backgroundPositionY, contentViewFrame.size.width+MARGIN*2, TITLE_LABEL_HEIGHT+MARGIN)];
-        titleLabel.textColor = self.titleColor;
-        titleLabel.text = self.titleText;
-        titleLabel.backgroundColor = [UIColor clearColor];
-        titleLabel.textAlignment = NSTextAlignmentCenter;
-        titleLabel.font = self.titleFont;
-    }
+//    UILabel *titleLabel = nil;
+//    if(self.titleText){
+//        titleLabel = [[UILabel alloc] initWithFrame:CGRectMake(backgroundPositionX, backgroundPositionY, contentViewFrame.size.width+MARGIN*2, TITLE_LABEL_HEIGHT+MARGIN)];
+//        titleLabel.textColor = self.titleColor;
+//        titleLabel.text = self.titleText;
+//        titleLabel.backgroundColor = [UIColor clearColor];
+//        titleLabel.textAlignment = NSTextAlignmentCenter;
+//        titleLabel.font = self.titleFont;
+//    }
     contentViewFrame.origin.x = backgroundPositionX+MARGIN;
-    contentViewFrame.origin.y = backgroundPositionY+titleLabelheight+MARGIN;
-
+//    contentViewFrame.origin.y = backgroundPositionY+titleLabelheight+MARGIN;
+    contentViewFrame.origin.y = backgroundPositionY + MARGIN+10;
+//
 
     self.contentView.frame = contentViewFrame;
     CALayer * contentViewLayer = [self.contentView layer];
@@ -176,7 +177,7 @@
     popoverView.baseColor = self.popoverBaseColor;
     popoverView.isGradient = self.popoverGradient;
     [popoverView addSubview:self.contentView];
-    [popoverView addSubview:titleLabel];
+//    [popoverView addSubview:titleLabel];
 
     CALayer* layer = popoverView.layer;
     layer.shadowOffset = CGSizeMake(0, 2);
