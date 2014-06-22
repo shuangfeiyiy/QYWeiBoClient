@@ -27,10 +27,11 @@ typedef enum  {
 } CollectionSectionStyle;
 
 
-@interface QYPlazaViewController ()
+@interface QYPlazaViewController () <SinaWeiboRequestDelegate>
 @property (nonatomic, retain) UICollectionViewFlowLayout *layout;
 @property (nonatomic, retain) NSArray *sectionOneImages;
 @property (nonatomic, retain) NSArray *sectionLabelNames;
+@property (nonatomic, retain) NSArray *sectionTrends;
 @end
 
 @implementation QYPlazaViewController
@@ -45,6 +46,8 @@ typedef enum  {
         self.title = @"广场";
         self.sectionOneImages = @[@"contacts_findfriends_icon",@"messagescenter_comments_os7",@"contacts_findfriends_icon",@"messagescenter_comments_os7"];
         self.sectionLabelNames = @[@"扫一扫",@"找朋友",@"会员",@"周边"];
+        [self reqeuestTrendsFromSinaServer];
+
     }
     return self;
 }
@@ -59,6 +62,14 @@ typedef enum  {
     self.collectionView.backgroundColor = [UIColor groupTableViewBackgroundColor];
 }
 
+- (void)reqeuestTrendsFromSinaServer
+{
+    SinaWeibo *sinaweibo = appDelegate.sinaWeibo;
+    [sinaweibo requestWithURL:@"trends/hourly.json"
+                       params:[NSMutableDictionary dictionaryWithObject:sinaweibo.userID forKey:@"uid"]
+                   httpMethod:@"GET"
+                     delegate:self];
+}
 - (void)registerPNCustomCollectionViewCell
 {
     [self.collectionView registerClass:[QYCollectionViewCellSectionFour class] forCellWithReuseIdentifier:FOUR_CELL_IDENTIFIER];
@@ -124,7 +135,10 @@ typedef enum  {
         case kPNCollectionViewCellSectionThree:
         {
             QYCollectionViewCellSectionThree *threeCell = (QYCollectionViewCellSectionThree*)[collectionView dequeueReusableCellWithReuseIdentifier:THREE_CELL_IDENTIFIER forIndexPath:indexPath];
+            threeCell.mDicTrends = self.sectionTrends[0][indexPath.item];
             cell = threeCell;
+            
+            
         }
             break;
         case kPNCollectionViewCellSectionFour:
@@ -168,4 +182,26 @@ typedef enum  {
     // Dispose of any resources that can be recreated.
 }
 
+#pragma mark - SinaWeiboRequestDelegate
+
+- (void)request:(SinaWeiboRequest *)request didReceiveResponse:(NSURLResponse *)response
+{
+    NSLog(@"%s:%@",__func__,response);
+}
+
+- (void)request:(SinaWeiboRequest *)request didReceiveRawData:(NSData *)data
+{
+    NSLog(@"%s",__func__);
+}
+- (void)request:(SinaWeiboRequest *)request didFailWithError:(NSError *)error
+{
+    NSLog(@"%s:%@",__func__,error);
+}
+
+- (void)request:(SinaWeiboRequest *)request didFinishLoadingWithResult:(id)result
+{
+    NSLog(@"%s,%@",__func__,result);
+    self.sectionTrends = [[result objectForKey:@"trends"] allValues];
+    [self.collectionView reloadData];
+}
 @end

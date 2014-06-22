@@ -10,4 +10,6 @@
 
 @interface QYCollectionViewCellSectionThree : UICollectionViewCell
 
+@property (nonatomic, retain) NSDictionary *mDicTrends;
+@property (nonatomic, retain) UILabel *labelTrend;
 @end

@@ -9,5 +9,5 @@
 #import <UIKit/UIKit.h>
 
 @interface QYCollectionViewCellSectionFour : UICollectionViewCell
-
+@property (nonatomic, retain) NSDictionary *mDicTrends;
 @end

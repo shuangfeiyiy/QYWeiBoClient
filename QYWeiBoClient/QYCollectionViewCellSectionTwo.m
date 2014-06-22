@@ -14,14 +14,17 @@
 {
     self = [super initWithFrame:frame];
     if (self) {
-        self.contentView.backgroundColor = [UIColor blueColor];
-        _imageView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, 47, 47)];
+        self.contentView.backgroundColor = [UIColor whiteColor];
+        CGFloat fontSize = 14.0f;
+        _imageView = [[UIImageView alloc] initWithFrame:CGRectMake(10, 15, 50, 50)];
         [self.contentView addSubview:_imageView];
         
-        _titleLabel = [[UILabel alloc] initWithFrame:CGRectMake(57, 2, 80, 25)];
+        _titleLabel = [[UILabel alloc] initWithFrame:CGRectMake(67, 17, 80, 20)];
+        _titleLabel.font = [UIFont systemFontOfSize:fontSize];
         [self.contentView addSubview:_titleLabel];
         
-        _subTitleLabel = [[UILabel alloc] initWithFrame:CGRectMake(57, 20, 150, 44)];
+        _subTitleLabel = [[UILabel alloc] initWithFrame:CGRectMake(67, 42, 150, 20)];
+        _subTitleLabel.font = [UIFont systemFontOfSize:fontSize];
         [self.contentView addSubview:_subTitleLabel];
     }
     return self;

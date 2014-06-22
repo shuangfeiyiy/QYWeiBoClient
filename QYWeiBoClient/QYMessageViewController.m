@@ -119,7 +119,7 @@
             
             break;
     }
-    cell.textLabel.font = [UIFont systemFontOfSize:13.0f];
+    cell.textLabel.font = [UIFont systemFontOfSize:14.0f];
     
     return cell;
 }
