@@ -92,7 +92,27 @@
             if (indexPath.row < self.bilTimelineList.count) {
                 NSDictionary *userInfo = self.bilTimelineList[indexPath.row][kStatusUserInfo];
                 NSURL *url = [NSURL URLWithString:userInfo[kUserAvatarLarge]];
-                [cell.imageView setImageWithURL:url];
+                UIImage *image = [UIImage imageWithData:[NSData dataWithContentsOfURL:url]];
+                cell.imageView.image = image;
+/*
+//                异步加载， 或者自己使用GCD实现
+//                dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+//                    NSError * error;
+//                    NSData * data = [NSData dataWithContentsOfURL:url];
+//                    UIImage *image = [UIImage imageWithData:[NSData dataWithContentsOfURL:url]];
+//                    if (data != nil) {
+//                        dispatch_sync(dispatch_get_main_queue(), ^{
+//                            cell.imageView.image = image;
+//                        });
+//                    } else {
+//                        NSLog(@"error when download:%@", error);
+//                    }
+//                });
+//
+                
+//                异步加载，使用SDWebImage
+//                [cell.imageView setImageWithURL:url];
+*/
                 cell.textLabel.text = userInfo[kUserInfoScreenName];
                 cell.detailTextLabel.text = self.bilTimelineList[indexPath.row][kStatusText];
             }
