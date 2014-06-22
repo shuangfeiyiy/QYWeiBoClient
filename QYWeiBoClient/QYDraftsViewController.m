@@ -49,7 +49,7 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    QYSmartTableViewCell *cell = [QYSmartTableViewCell cellForTableViewWithIdentifer:tableView];
+    QYSmartTableViewCell *cell = [QYSmartTableViewCell cellForTableViewWithIdentifer:tableView withCellStyle:UITableViewCellStyleDefault];
     cell.textLabel.text = [self.dratfStatus[indexPath.row] objectForKey:kStatusText];
     return cell;
 }

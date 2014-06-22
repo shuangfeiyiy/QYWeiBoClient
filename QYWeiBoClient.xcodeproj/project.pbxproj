@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		7ACB2B2C1956725000F50E99 /* QYMessageViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 7ACB2B2B1956725000F50E99 /* QYMessageViewCell.m */; };
 		CC19D74D1941B985005B53D7 /* QYSinaWeiboDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = CC19D74C1941B985005B53D7 /* QYSinaWeiboDelegate.m */; };
 		CC336E19194E9C0500AF3101 /* QYEmojiPageView.m in Sources */ = {isa = PBXBuildFile; fileRef = CC336E18194E9C0500AF3101 /* QYEmojiPageView.m */; };
 		CC336E25194E9CE000AF3101 /* Emoji.m in Sources */ = {isa = PBXBuildFile; fileRef = CC336E1C194E9CE000AF3101 /* Emoji.m */; };
@@ -240,6 +241,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		7ACB2B2A1956725000F50E99 /* QYMessageViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QYMessageViewCell.h; sourceTree = "<group>"; };
+		7ACB2B2B1956725000F50E99 /* QYMessageViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QYMessageViewCell.m; sourceTree = "<group>"; };
 		CC19D74B1941B985005B53D7 /* QYSinaWeiboDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QYSinaWeiboDelegate.h; sourceTree = "<group>"; };
 		CC19D74C1941B985005B53D7 /* QYSinaWeiboDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QYSinaWeiboDelegate.m; sourceTree = "<group>"; };
 		CC336E17194E9C0500AF3101 /* QYEmojiPageView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QYEmojiPageView.h; sourceTree = "<group>"; };
@@ -1014,6 +1017,8 @@
 				CCDB4A221941A13E002DE823 /* QYMessageViewController.h */,
 				CCDB4A231941A13E002DE823 /* QYMessageViewController.m */,
 				CCDB4A241941A13E002DE823 /* QYMessageViewController.xib */,
+				7ACB2B2A1956725000F50E99 /* QYMessageViewCell.h */,
+				7ACB2B2B1956725000F50E99 /* QYMessageViewCell.m */,
 			);
 			name = Message;
 			sourceTree = "<group>";
@@ -1319,6 +1324,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				7ACB2B2C1956725000F50E99 /* QYMessageViewCell.m in Sources */,
 				CC72654919557DC60076D243 /* QYDraftsViewController.m in Sources */,
 				CC336E25194E9CE000AF3101 /* Emoji.m in Sources */,
 				CCBF8F561945D2D000032552 /* QYEditStatusViewController.m in Sources */,

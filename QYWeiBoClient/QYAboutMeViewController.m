@@ -395,6 +395,10 @@ static CGFloat fontSize = 14.0f;
                      delegate:self];
 }
 
+- (void)onRetweetButtonTapped:(UIButton*)sender
+{
+    
+}
 #pragma mark - SinaWeiboRequestDelegate
 
 - (void)request:(SinaWeiboRequest *)request didReceiveResponse:(NSURLResponse *)response

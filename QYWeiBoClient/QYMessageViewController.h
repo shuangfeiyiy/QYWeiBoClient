@@ -9,5 +9,4 @@
 #import <UIKit/UIKit.h>
 
 @interface QYMessageViewController : UITableViewController
-@property (nonatomic, retain) NSMutableArray *messages;
 @end

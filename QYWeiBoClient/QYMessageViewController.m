@@ -7,9 +7,16 @@
 //
 
 #import "QYMessageViewController.h"
+#import "UIImageView+WebCache.h"
+#import "QYMessageViewCell.h"
 
 @interface QYMessageViewController ()<SinaWeiboRequestDelegate>
+//固定的单元格信息的文本内容
+@property (nonatomic, retain) NSMutableArray *messages;
+//固定单元格头像内容
 @property (nonatomic, retain) NSMutableArray *mImagesName;
+//真正的双向关注的微博信息内容
+@property (nonatomic, retain) NSArray *bilTimelineList;
 @end
 
 @implementation QYMessageViewController
@@ -28,7 +35,12 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-
+    NSArray *msgs = @[@"提到我的",@"评论",@"赞",@"新浪新闻",@"未关注人私信"];
+    self.messages = [msgs mutableCopy];
+    
+    NSArray *images = @[@"messagescenter_at_os7",@"messagescenter_comments_os7",@"messagescenter_good_os7",@"messagescenter_at_os7",@"messagescenter_at_os7"];
+    self.mImagesName = [images mutableCopy];
+    [self requestDataFromSinaServer];
 }
 
 - (void)requestDataFromSinaServer
@@ -49,30 +61,54 @@
 
 #pragma mark - Table view data source
 
-- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
-{
-#warning Potentially incomplete method implementation.
-    // Return the number of sections.
-    return 0;
-}
-
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-#warning Incomplete method implementation.
-    // Return the number of rows in the section.
-    return 0;
+//    单元格总数为：固定的单元格数＋双向关注的微博数目
+    return self.bilTimelineList.count + self.messages.count;
 }
 
-/*
+
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:<#@"reuseIdentifier"#> forIndexPath:indexPath];
-    
-    // Configure the cell...
+    QYSmartTableViewCell *cell = nil;
+    switch (indexPath.row) {
+        case 0:
+        case 1:
+        case 2:
+        case 3:
+        case 4:
+        {
+            cell = [QYSmartTableViewCell cellForTableViewWithIdentifer:tableView withCellStyle:UITableViewCellStyleDefault];
+            cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+            cell.imageView.image = [UIImage imageNamed:self.mImagesName[indexPath.row]];
+            cell.textLabel.text = self.messages[indexPath.row];
+            
+        }
+            break;
+        default:
+            cell = [QYMessageViewCell cellForTableViewWithIdentifer:tableView withCellStyle:UITableViewCellStyleSubtitle];
+            cell.imageView.bounds = CGRectMake(0, 0, 50, 50);
+            cell.accessoryType = UITableViewCellAccessoryNone;
+            if (indexPath.row < self.bilTimelineList.count) {
+                NSDictionary *userInfo = self.bilTimelineList[indexPath.row][kStatusUserInfo];
+                NSURL *url = [NSURL URLWithString:userInfo[kUserAvatarLarge]];
+                [cell.imageView setImageWithURL:url];
+                cell.textLabel.text = userInfo[kUserInfoScreenName];
+                cell.detailTextLabel.text = self.bilTimelineList[indexPath.row][kStatusText];
+            }
+            
+            break;
+    }
+    cell.textLabel.font = [UIFont systemFontOfSize:13.0f];
     
     return cell;
 }
-*/
+
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    return 60;
+}
+
 
 /*
 // Override to support conditional editing of the table view.
@@ -147,12 +183,7 @@
 
 - (void)request:(SinaWeiboRequest *)request didFinishLoadingWithResult:(id)result
 {
-    NSArray * timeLines = [result objectForKey:@"statuses"];
-    for (NSDictionary *dic in timeLines) {
-        NSDictionary *userInfo = [dic objectForKey:kStatusUserInfo];
-//        [self.mImagesName addObject:[userInfo objectForKey:kUserAvatarLarge]];
-//        [self.messages addObject:[dic objectForKey:kStatusText]];
-    }
+    self.bilTimelineList = [result objectForKey:@"statuses"];
     [self.tableView reloadData];
 }
 
