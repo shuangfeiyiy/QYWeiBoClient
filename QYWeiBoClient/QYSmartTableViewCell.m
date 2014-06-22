@@ -10,12 +10,12 @@
 
 @implementation QYSmartTableViewCell
 
-+(id)cellForTableViewWithIdentifer:(UITableView*)tableView;
++(id)cellForTableViewWithIdentifer:(UITableView*)tableView withCellStyle:(UITableViewCellStyle)style;
 {
     NSString *cellID = [self identifier];
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellID];
     if (cell == nil) {
-        cell = [[self alloc] initWithIdentifier:cellID];
+        cell = [[self alloc] initWithIdentifier:cellID withCellStyle:style];
     }
     return cell;
 }
@@ -25,8 +25,8 @@
     return NSStringFromClass([self class]);
 }
 
-- (id)initWithIdentifier:(NSString*)cellID
+- (id)initWithIdentifier:(NSString*)cellID withCellStyle:(UITableViewCellStyle)style
 {
-     return [self initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellID];
+     return [self initWithStyle:style reuseIdentifier:cellID];
 }
 @end

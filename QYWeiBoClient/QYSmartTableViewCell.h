@@ -10,8 +10,8 @@
 
 @interface QYSmartTableViewCell : UITableViewCell
 
-+(id)cellForTableViewWithIdentifer:(UITableView*)tableView;
++(id)cellForTableViewWithIdentifer:(UITableView*)tableView withCellStyle:(UITableViewCellStyle)style;
 +(NSString*)identifier;
 
-- (id)initWithIdentifier:(NSString*)cellID;
+- (id)initWithIdentifier:(NSString*)cellID withCellStyle:(UITableViewCellStyle)style;
 @end
