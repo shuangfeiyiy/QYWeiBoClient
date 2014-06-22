@@ -7,6 +7,11 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		7A0A545C195710C1004360C6 /* TSActionSheet.m in Sources */ = {isa = PBXBuildFile; fileRef = 7A0A5452195710C1004360C6 /* TSActionSheet.m */; };
+		7A0A545D195710C1004360C6 /* TSPopoverController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7A0A5454195710C1004360C6 /* TSPopoverController.m */; };
+		7A0A545E195710C1004360C6 /* TSPopoverPopoverView.m in Sources */ = {isa = PBXBuildFile; fileRef = 7A0A5456195710C1004360C6 /* TSPopoverPopoverView.m */; };
+		7A0A545F195710C1004360C6 /* TSPopoverTouchView.m in Sources */ = {isa = PBXBuildFile; fileRef = 7A0A5459195710C1004360C6 /* TSPopoverTouchView.m */; };
+		7A0A5460195710C1004360C6 /* UIBarButtonItem+WEPopover.m in Sources */ = {isa = PBXBuildFile; fileRef = 7A0A545B195710C1004360C6 /* UIBarButtonItem+WEPopover.m */; };
 		7ACB2B2C1956725000F50E99 /* QYMessageViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 7ACB2B2B1956725000F50E99 /* QYMessageViewCell.m */; };
 		CC19D74D1941B985005B53D7 /* QYSinaWeiboDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = CC19D74C1941B985005B53D7 /* QYSinaWeiboDelegate.m */; };
 		CC336E19194E9C0500AF3101 /* QYEmojiPageView.m in Sources */ = {isa = PBXBuildFile; fileRef = CC336E18194E9C0500AF3101 /* QYEmojiPageView.m */; };
@@ -241,6 +246,17 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		7A0A5451195710C1004360C6 /* TSActionSheet.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TSActionSheet.h; sourceTree = "<group>"; };
+		7A0A5452195710C1004360C6 /* TSActionSheet.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TSActionSheet.m; sourceTree = "<group>"; };
+		7A0A5453195710C1004360C6 /* TSPopoverController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TSPopoverController.h; sourceTree = "<group>"; };
+		7A0A5454195710C1004360C6 /* TSPopoverController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TSPopoverController.m; sourceTree = "<group>"; };
+		7A0A5455195710C1004360C6 /* TSPopoverPopoverView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TSPopoverPopoverView.h; sourceTree = "<group>"; };
+		7A0A5456195710C1004360C6 /* TSPopoverPopoverView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TSPopoverPopoverView.m; sourceTree = "<group>"; };
+		7A0A5457195710C1004360C6 /* TSPopoverTouchesDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TSPopoverTouchesDelegate.h; sourceTree = "<group>"; };
+		7A0A5458195710C1004360C6 /* TSPopoverTouchView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TSPopoverTouchView.h; sourceTree = "<group>"; };
+		7A0A5459195710C1004360C6 /* TSPopoverTouchView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TSPopoverTouchView.m; sourceTree = "<group>"; };
+		7A0A545A195710C1004360C6 /* UIBarButtonItem+WEPopover.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIBarButtonItem+WEPopover.h"; sourceTree = "<group>"; };
+		7A0A545B195710C1004360C6 /* UIBarButtonItem+WEPopover.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIBarButtonItem+WEPopover.m"; sourceTree = "<group>"; };
 		7ACB2B2A1956725000F50E99 /* QYMessageViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QYMessageViewCell.h; sourceTree = "<group>"; };
 		7ACB2B2B1956725000F50E99 /* QYMessageViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QYMessageViewCell.m; sourceTree = "<group>"; };
 		CC19D74B1941B985005B53D7 /* QYSinaWeiboDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QYSinaWeiboDelegate.h; sourceTree = "<group>"; };
@@ -554,6 +570,24 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		7A0A5450195710C1004360C6 /* TSPopover */ = {
+			isa = PBXGroup;
+			children = (
+				7A0A5451195710C1004360C6 /* TSActionSheet.h */,
+				7A0A5452195710C1004360C6 /* TSActionSheet.m */,
+				7A0A5453195710C1004360C6 /* TSPopoverController.h */,
+				7A0A5454195710C1004360C6 /* TSPopoverController.m */,
+				7A0A5455195710C1004360C6 /* TSPopoverPopoverView.h */,
+				7A0A5456195710C1004360C6 /* TSPopoverPopoverView.m */,
+				7A0A5457195710C1004360C6 /* TSPopoverTouchesDelegate.h */,
+				7A0A5458195710C1004360C6 /* TSPopoverTouchView.h */,
+				7A0A5459195710C1004360C6 /* TSPopoverTouchView.m */,
+				7A0A545A195710C1004360C6 /* UIBarButtonItem+WEPopover.h */,
+				7A0A545B195710C1004360C6 /* UIBarButtonItem+WEPopover.m */,
+			);
+			path = TSPopover;
+			sourceTree = "<group>";
+		};
 		CC336E1A194E9CE000AF3101 /* Emoji */ = {
 			isa = PBXGroup;
 			children = (
@@ -937,6 +971,7 @@
 		CCDB4A091941906B002DE823 /* Utilities */ = {
 			isa = PBXGroup;
 			children = (
+				7A0A5450195710C1004360C6 /* TSPopover */,
 				CC7B53E4195422B500D49261 /* FMDB */,
 				CC336E1A194E9CE000AF3101 /* Emoji */,
 				CC4F71A8194AFDFC00F85BD0 /* Zn2En */,
@@ -1332,10 +1367,12 @@
 				CC7B53F2195422B500D49261 /* FMDatabaseQueue.m in Sources */,
 				CC624F791942B133000D58FE /* SDWebImageDownloader.m in Sources */,
 				CC7265541955AF190076D243 /* QYCollectionViewCellSectionOne.m in Sources */,
+				7A0A545D195710C1004360C6 /* TSPopoverController.m in Sources */,
 				CC336E29194E9CE000AF3101 /* EmojiTransport.m in Sources */,
 				CC7265591955AFEE0076D243 /* QYPlazaViewLayout.m in Sources */,
 				CCDB49D919418E2A002DE823 /* QYAppDelegate.m in Sources */,
 				CC7265551955AF190076D243 /* QYCollectionViewCellSectionThree.m in Sources */,
+				7A0A5460195710C1004360C6 /* UIBarButtonItem+WEPopover.m in Sources */,
 				CCDB49D519418E2A002DE823 /* main.m in Sources */,
 				CC624F7C1942B133000D58FE /* SDWebImagePrefetcher.m in Sources */,
 				CC336E2F194FE3D200AF3101 /* QYStatusTableViewCell.m in Sources */,
@@ -1353,6 +1390,8 @@
 				CCDB4A1B1941A0BA002DE823 /* QYLoginViewController.m in Sources */,
 				CCDB4A251941A13E002DE823 /* QYMessageViewController.m in Sources */,
 				CC624F811942B133000D58FE /* UIImageView+WebCache.m in Sources */,
+				7A0A545C195710C1004360C6 /* TSActionSheet.m in Sources */,
+				7A0A545F195710C1004360C6 /* TSPopoverTouchView.m in Sources */,
 				CCDB4A2F1941A192002DE823 /* QYPlazaViewController.m in Sources */,
 				CC624F431942AE72000D58FE /* QYPlaySound.m in Sources */,
 				CC4F71A6194AE55600F85BD0 /* QYFriendViewController.m in Sources */,
@@ -1372,6 +1411,7 @@
 				CC336E27194E9CE000AF3101 /* EmojiMapSymbols.m in Sources */,
 				CC624F7A1942B133000D58FE /* SDWebImageDownloaderOperation.m in Sources */,
 				CC336E19194E9C0500AF3101 /* QYEmojiPageView.m in Sources */,
+				7A0A545E195710C1004360C6 /* TSPopoverPopoverView.m in Sources */,
 				CCDB4A0619418E5D002DE823 /* SinaWeibo.m in Sources */,
 				CC336E28194E9CE000AF3101 /* EmojiPictographs.m in Sources */,
 				CCDB4A0819418E5D002DE823 /* SinaWeiboRequest.m in Sources */,
