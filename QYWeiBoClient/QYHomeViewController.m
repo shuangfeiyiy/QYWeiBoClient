@@ -111,9 +111,7 @@
     }];
     [actionSheet addButtonWithTitle:@"扫-扫" block:^{
         QYQRCodeViewController * rt = [[QYQRCodeViewController alloc]init];
-        [self presentViewController:rt animated:YES completion:^{
-            
-        }];
+        [self presentViewController:rt animated:YES completion:nil];
     }];
     actionSheet.cornerRadius = 2.0f;
     [actionSheet showWithTouch:event];

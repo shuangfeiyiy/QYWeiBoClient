@@ -15,7 +15,9 @@
     BOOL upOrdown;
     NSTimer * timer;
 }
+//相当于物理设备
 @property (strong,nonatomic) AVCaptureDevice * device;
+//
 @property (strong,nonatomic) AVCaptureDeviceInput * input;
 @property (strong,nonatomic) AVCaptureMetadataOutput * output;
 @property (strong,nonatomic) AVCaptureSession * session;

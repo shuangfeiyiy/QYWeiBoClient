@@ -53,14 +53,13 @@
     [self.view addSubview:_line];
     
     timer = [NSTimer scheduledTimerWithTimeInterval:.02 target:self selector:@selector(animation1) userInfo:nil repeats:YES];
-    
-   
-
-
 }
+
+#define ANIMATION_DOWN  NO
+//#define ANIMATION_UP  YES
 -(void)animation1
 {
-    if (upOrdown == NO) {
+    if (upOrdown == ANIMATION_DOWN) {
         num ++;
         _line.frame = CGRectMake(50, 110+2*num, 220, 2);
         if (2*num == 280) {
@@ -97,6 +96,8 @@
     
     // Output
     _output = [[AVCaptureMetadataOutput alloc]init];
+    // 条码类型 AVMetadataObjectTypeQRCode
+    _output.metadataObjectTypes =@[AVMetadataObjectTypeQRCode];
     [_output setMetadataObjectsDelegate:self queue:dispatch_get_main_queue()];
     
     // Session
@@ -112,17 +113,12 @@
         [_session addOutput:self.output];
     }
     
-    // 条码类型 AVMetadataObjectTypeQRCode
-    _output.metadataObjectTypes =@[AVMetadataObjectTypeQRCode];
-    
-    // Preview
+        // Preview
     _preview =[AVCaptureVideoPreviewLayer layerWithSession:self.session];
     _preview.videoGravity = AVLayerVideoGravityResizeAspectFill;
     _preview.frame =CGRectMake(20,110,280,280);
     [self.view.layer insertSublayer:self.preview atIndex:0];
-    
 
-    
     // Start
     [_session startRunning];
 }
