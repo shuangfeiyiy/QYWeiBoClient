@@ -17,6 +17,7 @@
 #import "NSString+FrameHeight.h"
 #import "QYWBDataBaseEngine.h"
 #import "TSActionSheet.h"
+#import "QYQRCodeViewController.h"
 
 @interface QYHomeViewController ()<QYStatusTableViewCellDelegate,NSURLConnectionDataDelegate>
 
@@ -109,7 +110,10 @@
         [self onRefreshControl:self.refreshControl];
     }];
     [actionSheet addButtonWithTitle:@"扫-扫" block:^{
-        NSLog(@"pushed hoge1 button");
+        QYQRCodeViewController * rt = [[QYQRCodeViewController alloc]init];
+        [self presentViewController:rt animated:YES completion:^{
+            
+        }];
     }];
     actionSheet.cornerRadius = 2.0f;
     [actionSheet showWithTouch:event];

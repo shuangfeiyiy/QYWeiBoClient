@@ -14,6 +14,7 @@
 		7A0A5460195710C1004360C6 /* UIBarButtonItem+WEPopover.m in Sources */ = {isa = PBXBuildFile; fileRef = 7A0A545B195710C1004360C6 /* UIBarButtonItem+WEPopover.m */; };
 		7ACB2B2C1956725000F50E99 /* QYMessageViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 7ACB2B2B1956725000F50E99 /* QYMessageViewCell.m */; };
 		CC19D74D1941B985005B53D7 /* QYSinaWeiboDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = CC19D74C1941B985005B53D7 /* QYSinaWeiboDelegate.m */; };
+		CC1FAF7C1958231000843C8D /* QYQRCodeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CC1FAF7B1958231000843C8D /* QYQRCodeViewController.m */; };
 		CC336E19194E9C0500AF3101 /* QYEmojiPageView.m in Sources */ = {isa = PBXBuildFile; fileRef = CC336E18194E9C0500AF3101 /* QYEmojiPageView.m */; };
 		CC336E25194E9CE000AF3101 /* Emoji.m in Sources */ = {isa = PBXBuildFile; fileRef = CC336E1C194E9CE000AF3101 /* Emoji.m */; };
 		CC336E26194E9CE000AF3101 /* EmojiEmoticons.m in Sources */ = {isa = PBXBuildFile; fileRef = CC336E1E194E9CE000AF3101 /* EmojiEmoticons.m */; };
@@ -261,6 +262,8 @@
 		7ACB2B2B1956725000F50E99 /* QYMessageViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QYMessageViewCell.m; sourceTree = "<group>"; };
 		CC19D74B1941B985005B53D7 /* QYSinaWeiboDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QYSinaWeiboDelegate.h; sourceTree = "<group>"; };
 		CC19D74C1941B985005B53D7 /* QYSinaWeiboDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QYSinaWeiboDelegate.m; sourceTree = "<group>"; };
+		CC1FAF7A1958231000843C8D /* QYQRCodeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QYQRCodeViewController.h; sourceTree = "<group>"; };
+		CC1FAF7B1958231000843C8D /* QYQRCodeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QYQRCodeViewController.m; sourceTree = "<group>"; };
 		CC336E17194E9C0500AF3101 /* QYEmojiPageView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QYEmojiPageView.h; sourceTree = "<group>"; };
 		CC336E18194E9C0500AF3101 /* QYEmojiPageView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QYEmojiPageView.m; sourceTree = "<group>"; };
 		CC336E1B194E9CE000AF3101 /* Emoji.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Emoji.h; sourceTree = "<group>"; };
@@ -1029,6 +1032,8 @@
 		CCDB4A0E19419FE4002DE823 /* Home */ = {
 			isa = PBXGroup;
 			children = (
+				CC1FAF7A1958231000843C8D /* QYQRCodeViewController.h */,
+				CC1FAF7B1958231000843C8D /* QYQRCodeViewController.m */,
 				CCDB4A1D1941A103002DE823 /* QYHomeViewController.h */,
 				CCDB4A1E1941A103002DE823 /* QYHomeViewController.m */,
 				CCDB4A1F1941A103002DE823 /* QYHomeViewController.xib */,
@@ -1421,6 +1426,7 @@
 				CC624F8B1943037A000D58FE /* XMLDictionary.m in Sources */,
 				CC726541195567AD0076D243 /* QYAboutClientViewController.m in Sources */,
 				CC624F7D1942B133000D58FE /* UIButton+WebCache.m in Sources */,
+				CC1FAF7C1958231000843C8D /* QYQRCodeViewController.m in Sources */,
 				CC624F7E1942B133000D58FE /* UIImage+GIF.m in Sources */,
 				CC624F761942B133000D58FE /* SDImageCache.m in Sources */,
 				CC4F71AE194B0E3800F85BD0 /* QYCustomView.m in Sources */,
@@ -1544,6 +1550,10 @@
 				GCC_PREFIX_HEADER = "QYWeiBoClient/QYWeiBoClient-Prefix.pch";
 				INFOPLIST_FILE = "QYWeiBoClient/QYWeiBoClient-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/QYWeiBoClient/ZBarSDK",
+				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
 			};
@@ -1558,6 +1568,10 @@
 				GCC_PREFIX_HEADER = "QYWeiBoClient/QYWeiBoClient-Prefix.pch";
 				INFOPLIST_FILE = "QYWeiBoClient/QYWeiBoClient-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/QYWeiBoClient/ZBarSDK",
+				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
 			};
