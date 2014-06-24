@@ -43,7 +43,7 @@
 - (void)dealloc {
 //	self.fadeOutTimer = nil; //此成员是只读类型，原作者实现赋值为nil应该属于错误
     [[NSNotificationCenter defaultCenter] removeObserver:self];
-//    [super dealloc];
+    [super dealloc];
 }
 
 
@@ -117,7 +117,6 @@
 + (void)dismissWithError:(NSString *)errorString afterDelay:(NSTimeInterval)seconds {
     [[SVProgressHUD sharedView] dismissWithStatus:errorString error:YES afterDelay:seconds];
 }
-
 
 #pragma mark - Instance Methods
 

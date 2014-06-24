@@ -97,9 +97,8 @@
     // Output
     _output = [[AVCaptureMetadataOutput alloc]init];
     // 条码类型 AVMetadataObjectTypeQRCode
-    _output.metadataObjectTypes =@[AVMetadataObjectTypeQRCode];
     [_output setMetadataObjectsDelegate:self queue:dispatch_get_main_queue()];
-    
+   
     // Session
     _session = [[AVCaptureSession alloc]init];
     [_session setSessionPreset:AVCaptureSessionPresetHigh];
@@ -112,7 +111,7 @@
     {
         [_session addOutput:self.output];
     }
-    
+     _output.metadataObjectTypes =@[AVMetadataObjectTypeQRCode];
         // Preview
     _preview =[AVCaptureVideoPreviewLayer layerWithSession:self.session];
     _preview.videoGravity = AVLayerVideoGravityResizeAspectFill;

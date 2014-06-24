@@ -1032,8 +1032,6 @@
 		CCDB4A0E19419FE4002DE823 /* Home */ = {
 			isa = PBXGroup;
 			children = (
-				CC1FAF7A1958231000843C8D /* QYQRCodeViewController.h */,
-				CC1FAF7B1958231000843C8D /* QYQRCodeViewController.m */,
 				CCDB4A1D1941A103002DE823 /* QYHomeViewController.h */,
 				CCDB4A1E1941A103002DE823 /* QYHomeViewController.m */,
 				CCDB4A1F1941A103002DE823 /* QYHomeViewController.xib */,
@@ -1047,6 +1045,8 @@
 				CC4F71A5194AE55600F85BD0 /* QYFriendViewController.xib */,
 				CC336E17194E9C0500AF3101 /* QYEmojiPageView.h */,
 				CC336E18194E9C0500AF3101 /* QYEmojiPageView.m */,
+				CC1FAF7A1958231000843C8D /* QYQRCodeViewController.h */,
+				CC1FAF7B1958231000843C8D /* QYQRCodeViewController.m */,
 			);
 			name = Home;
 			sourceTree = "<group>";
