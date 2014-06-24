@@ -9,6 +9,8 @@
 #ifndef QYWeiBoClient_QYConstDefine_h
 #define QYWeiBoClient_QYConstDefine_h
 
+//此工程如果想要正常运行，需要先注册成为新浪的开发者，创建工程得到kAppKey和kAppSecret
+//如果想要测试此工程，需要修改kAppKey 和 kAppSecret两个值为自己在新浪微博平台申请的值
 #define kAppKey           @"4074510129"
 #define kAppSecret        @"30dac3d5368fbdd37b8034e3431f5ba8"
 #define kAppRedirectURI   @"https://api.weibo.com/oauth2/default.html"
