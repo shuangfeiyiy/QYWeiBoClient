@@ -18,6 +18,7 @@
     [self initLaunchStatus];
     
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
+    
     QYSinaWeiboDelegate *sinaDelegate = [[QYSinaWeiboDelegate alloc] init];
     
     _sinaWeibo = [[SinaWeibo alloc] initWithAppKey:kAppKey appSecret:kAppSecret appRedirectURI:kAppRedirectURI andDelegate:sinaDelegate];
@@ -41,8 +42,6 @@
             [QYViewControllerManager presentQYController:QYControllerTypeLoginView];
         }
     }
-    
-    self.window.backgroundColor = [UIColor whiteColor];
     [self.window makeKeyAndVisible];
     return YES;
 }

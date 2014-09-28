@@ -43,7 +43,7 @@
 - (void)dealloc {
 //	self.fadeOutTimer = nil; //此成员是只读类型，原作者实现赋值为nil应该属于错误
     [[NSNotificationCenter defaultCenter] removeObserver:self];
-    [super dealloc];
+//    [super dealloc];
 }
 
 
@@ -392,7 +392,7 @@
         [self setStatus:string];
         [self.spinnerView stopAnimating];
         
-        self.fadeOutTimer = [NSTimer scheduledTimerWithTimeInterval:seconds target:self selector:@selector(dismiss) userInfo:nil repeats:NO];
+        self.fadeOutTimer = [NSTimer scheduledTimerWithTimeInterval:seconds target:self selector:@selector(dismiss) userInfo:nil repeats:NO] ;
         
     });
 }
@@ -472,7 +472,7 @@
 		stringLabel.textColor = [UIColor whiteColor];
 		stringLabel.backgroundColor = [UIColor clearColor];
 		stringLabel.adjustsFontSizeToFitWidth = YES;
-		stringLabel.textAlignment = UITextAlignmentCenter;
+		stringLabel.textAlignment = NSTextAlignmentCenter;
 		stringLabel.baselineAdjustment = UIBaselineAdjustmentAlignCenters;
 		stringLabel.font = [UIFont boldSystemFontOfSize:16];
 		stringLabel.shadowColor = [UIColor blackColor];

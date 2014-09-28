@@ -132,8 +132,11 @@
     }else
     {
         if (![SVProgressHUD isVisible]) {
-            [SVProgressHUD show];
+            [SVProgressHUD showWithStatus:@"获取数据"];
         }
+    }
+    if (![SVProgressHUD isVisible]) {
+        [SVProgressHUD showWithStatus:@"obtain"];
     }
     [self requstTimelineFromSinaServer];
     [self requestUserInfoFromSinaServer];
@@ -381,7 +384,7 @@ static CGFloat fontSize = 14.0f;
     if ([self.refreshControl isRefreshing]) {
         [self.refreshControl endRefreshing];
     }
-    [SVProgressHUD dismiss];
+    [SVProgressHUD dismissWithSuccess:@"OK"];
 }
 
 #pragma mark -
@@ -429,7 +432,7 @@ static CGFloat fontSize = 14.0f;
     NSData *imagData = [[NSData alloc] initWithContentsOfURL:[NSURL URLWithString:imageName]];
     UIImage *image = [UIImage imageWithData:imagData];
     imageView.image = image;
-    
+
     UITapGestureRecognizer *tapGesture = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(onFullImageViewTapped:)];
     [imageView addGestureRecognizer:tapGesture];
     
@@ -442,7 +445,6 @@ static CGFloat fontSize = 14.0f;
     picImageBgView.maximumZoomScale = 3.0f;
     [picImageBgView addSubview:imageView];
     [window addSubview:picImageBgView];
-    
     window.userInteractionEnabled = YES;
     window.multipleTouchEnabled = YES;
 }

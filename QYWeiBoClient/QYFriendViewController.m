@@ -19,7 +19,7 @@
 @property (nonatomic,retain) NSMutableDictionary *showContacts;
 @property (nonatomic,retain) NSArray *sectionTitle;
 //为了便于操作数据而又不破坏原始数据，这个数组存放的数据是原始数据的一份复制
-@property (nonatomic, retain) NSArray *modifyFriendContacts;
+@property (nonatomic, copy) NSArray *modifyFriendContacts;
 @end
 
 @implementation QYFriendViewController
@@ -82,7 +82,7 @@
 - (void)viewDidAppear:(BOOL)animated
 {
     [super viewDidAppear:animated];
-    CGRect newFrame = {0,20,320,480};
+    CGRect newFrame = CGRectMake(0, self.view.bounds.origin.y, self.view.bounds.size.width, self.view.bounds.size.height-20);
     [ self.tableView setFrame:newFrame];
 
 }
@@ -231,7 +231,7 @@ sectionForSectionIndexTitle:(NSString *)title atIndex:(NSInteger)index
     [self.tableView reloadData];
 }
 
-- (NSString *) getPinYinNameFirstLetter:(NSString*)username
+- (NSString *)getPinYinNameFirstLetter:(NSString*)username
 {
 	if ([username canBeConvertedToEncoding: NSASCIIStringEncoding]) {//如果是英语
 		return [[NSString stringWithFormat:@"%c",[username characterAtIndex:0]] uppercaseString];

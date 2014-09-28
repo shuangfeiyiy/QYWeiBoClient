@@ -178,7 +178,7 @@
 		CC624F801942B133000D58FE /* UIImage+WebP.m in Sources */ = {isa = PBXBuildFile; fileRef = CC624F711942B133000D58FE /* UIImage+WebP.m */; settings = {COMPILER_FLAGS = "-fobjc-arc"; }; };
 		CC624F811942B133000D58FE /* UIImageView+WebCache.m in Sources */ = {isa = PBXBuildFile; fileRef = CC624F731942B133000D58FE /* UIImageView+WebCache.m */; };
 		CC624F861942F061000D58FE /* SVProgressHUD.bundle in Resources */ = {isa = PBXBuildFile; fileRef = CC624F831942F061000D58FE /* SVProgressHUD.bundle */; };
-		CC624F871942F061000D58FE /* SVProgressHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = CC624F851942F061000D58FE /* SVProgressHUD.m */; };
+		CC624F871942F061000D58FE /* SVProgressHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = CC624F851942F061000D58FE /* SVProgressHUD.m */; settings = {COMPILER_FLAGS = "-fobjc-arc"; }; };
 		CC624F8B1943037A000D58FE /* XMLDictionary.m in Sources */ = {isa = PBXBuildFile; fileRef = CC624F8A1943037A000D58FE /* XMLDictionary.m */; settings = {COMPILER_FLAGS = "-fobjc-arc"; }; };
 		CC726541195567AD0076D243 /* QYAboutClientViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CC72653F195567AD0076D243 /* QYAboutClientViewController.m */; };
 		CC726542195567AD0076D243 /* QYAboutClientViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = CC726540195567AD0076D243 /* QYAboutClientViewController.xib */; };
