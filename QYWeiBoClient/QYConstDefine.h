@@ -41,5 +41,18 @@ static NSString * const kStatusAttitudesCount = @"attitudes_count";
 static NSString * const kUserInfoScreenName = @"screen_name";
 static NSString * const kUserInfoName = @"name";
 static NSString * const kUserAvatarLarge = @"avatar_large";
+static NSString * const kUserAvatarHd = @"avatar_hd";
 static NSString * const kUserID = @"id";
+static NSString * const kUserDescription = @"description";
+static NSString * const kUserVerifiedReson = @"verified_reason";
+static NSString * const kUserFollowersCount = @"followers_count";
+static NSString * const kUserStatusCount = @"statuses_count";
+static NSString * const kUserFriendCount = @"friends_count";
+static NSString * const kUserStatusInfo = @"status";
+static NSString * const kUserStatuses = @"statuses";
+
+//朋友列表常量
+static NSString * const kFriendUser = @"users";
+static NSString * const kFriendUserProfileImageUrl = @"profile_image_url";
+
 #endif
