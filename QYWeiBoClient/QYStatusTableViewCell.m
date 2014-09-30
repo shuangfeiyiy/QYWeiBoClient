@@ -86,19 +86,19 @@ typedef NS_ENUM(NSUInteger, QYCellStatusImageViewType) {
 //    为了保障复用单元格的时候，界面不会出现重复，需要在重新布局前，将界面还原
     [self restoreCellSubviewFrame];
     CGFloat fontSize = 14.0f;
-    NSDictionary *dicUserInfo = [self.cellData objectForKey:@"user"];
+    NSDictionary *dicUserInfo = [self.cellData objectForKey:kStatusUserInfo];
     NSDictionary *statusInfo = self.cellData;
     
     NSUInteger widthSpace = 5;
 
-    NSString *strUrl = [dicUserInfo objectForKey:@"avatar_large"];
+    NSString *strUrl = [dicUserInfo objectForKey:kUserAvatarHd];
     [self.avatarImage setImageWithURL:[NSURL URLWithString:strUrl]];
     
     self.nameLabel.frame =  CGRectMake(CGRectGetMaxX(self.avatarImage.frame)+widthSpace, 2, 100, 20);
-    self.nameLabel.text = [dicUserInfo objectForKey:@"screen_name"];
+    self.nameLabel.text = [dicUserInfo objectForKey:kUserInfoScreenName];
     
     self.createTimeLabel.frame =  CGRectMake(CGRectGetMaxX(self.avatarImage.frame)+widthSpace,CGRectGetHeight(self.nameLabel.frame)+ 2,100,20);
-    NSString *strDate = [statusInfo objectForKey:@"created_at"];
+    NSString *strDate = [statusInfo objectForKey:kStatusCreateTime];
     NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
     [dateFormatter setDateFormat:@"EEE MMM dd HH:mm:ss ZZZ yyyy"];
     NSDate *dateFromString = [dateFormatter dateFromString:strDate];
@@ -108,12 +108,12 @@ typedef NS_ENUM(NSUInteger, QYCellStatusImageViewType) {
     
     self.sourceLabel.frame = CGRectMake(CGRectGetMaxX(self.createTimeLabel.frame)+widthSpace, CGRectGetHeight(self.nameLabel.frame)+2, 150, 20);
     self.sourceLabel.font = [UIFont systemFontOfSize:fontSize];
-    NSString *xmlSourceString = [statusInfo objectForKey:@"source"];
+    NSString *xmlSourceString = [statusInfo objectForKey:kStatusSource];
     NSDictionary *dicSource = [NSDictionary  dictionaryWithXMLString:xmlSourceString];
-    self.sourceLabel.text = [dicSource objectForKey:@"__text"];
+    self.sourceLabel.text = [dicSource objectForKey:XMLDictionaryTextKey];
     
     //    微博正文
-    NSString *statusText = [statusInfo objectForKey:@"text"];
+    NSString *statusText = [statusInfo objectForKey:kStatusText];
     self.labelStatus.text = statusText;
     CGFloat statusTextHight = [statusText frameHeightWithFontSize:fontSize forViewWidth:310.f];
     CGRect newFrame = CGRectMake(widthSpace, CGRectGetMaxY(self.sourceLabel.frame)+widthSpace, 310, statusTextHight);
@@ -128,11 +128,11 @@ typedef NS_ENUM(NSUInteger, QYCellStatusImageViewType) {
         [stView removeFromSuperview];
     }
     
-    NSDictionary *retweetStatusInfo = [self.cellData objectForKey:@"retweeted_status"];
+    NSDictionary *retweetStatusInfo = [self.cellData objectForKey:kStatusRetweetStatus];
     //  当这条微博是一条转发微博
     if (retweetStatusInfo != nil) {
         //    转发微博正文
-        NSString *statusText = [retweetStatusInfo objectForKey:@"text"];
+        NSString *statusText = [retweetStatusInfo objectForKey:kStatusText];
         self.labelRetweetStatus.text = statusText;
         CGRect newFrame = CGRectMake(widthSpace, CGRectGetMaxY(self.labelStatus.frame)+widthSpace, 310, [statusText frameHeightWithFontSize:fontSize forViewWidth:310.0f]);
         self.labelRetweetStatus.frame = newFrame;
@@ -164,7 +164,7 @@ typedef NS_ENUM(NSUInteger, QYCellStatusImageViewType) {
             break;
             case kCellReweetStatusImageView:
         {
-            statusInfo = [self.cellData objectForKey:@"retweeted_status"];
+            statusInfo = [self.cellData objectForKey:kStatusRetweetStatus];
             backGroundView = self.retStImageViewBg;
             preLabel = self.labelRetweetStatus;
         }
@@ -174,7 +174,7 @@ typedef NS_ENUM(NSUInteger, QYCellStatusImageViewType) {
     }
     
     //   微博正文附带图片
-    NSArray *statusPicUrls = [statusInfo objectForKey:@"pic_urls"];
+    NSArray *statusPicUrls = [statusInfo objectForKey:kStatusPicUrls];
     
     if (statusPicUrls.count > 1) {
         backGroundView.frame = CGRectMake(0, CGRectGetMaxY(preLabel.frame)+widthSpace, 310, 80 * ceilf(statusPicUrls.count /3.0f));
@@ -187,14 +187,14 @@ typedef NS_ENUM(NSUInteger, QYCellStatusImageViewType) {
                 stImgView = [[UIImageView alloc] initWithFrame:CGRectMake(5+statusImageWidth*(i%3), statusImageHeight*ceil(i/3), statusImageWidth, statusImageHeight)];
             }
             
-            NSString *strPicUrls = [statusPicUrls[i] objectForKey:@"thumbnail_pic"];
+            NSString *strPicUrls = [statusPicUrls[i] objectForKey:kStatusThumbnailPic];
             [stImgView setImageWithURL:[NSURL URLWithString:strPicUrls]];
             [backGroundView addSubview:stImgView];
         }
     }else if (statusPicUrls.count == 1)
     {
         
-        NSString *strPicUrls = [statusPicUrls[0] objectForKey:@"thumbnail_pic"];
+        NSString *strPicUrls = [statusPicUrls[0] objectForKey:kStatusThumbnailPic];
         UIImage *image = [UIImage imageWithData:[NSData dataWithContentsOfURL:[NSURL URLWithString:strPicUrls]]];
         UIImageView *stImgView = [[UIImageView alloc] initWithFrame:CGRectMake(5, 5, image.size.width, image.size.height)];
         [stImgView setImage:image];
