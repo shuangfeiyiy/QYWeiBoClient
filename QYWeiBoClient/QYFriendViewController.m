@@ -41,30 +41,6 @@
     self.searchBar.placeholder = @"输入联系人名字";
     self.searchBar.showsBookmarkButton = YES;
     
-    
-   
-//    self.searchBar.showsCancelButton = YES;
-//    self.searchBar.barStyle = UIBarStyleBlack;
-//    self.searchBar.barTintColor = [UIColor orangeColor];
-//
-//    self.tableView.contentOffset = CGPointMake(0, -44);
-//    self.tableView.contentInset =  UIEdgeInsetsMake(44, 0, 0, 0);
-    
-//    UIView *bgView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 320, 586)];
-//    bgView.userInteractionEnabled = YES;
-//    self.tableView.backgroundView = bgView;
-//    
-//    titleView = [[QYCustomView alloc] initWithFrame:CGRectMake(0, 0, 320, 44)];
-//    titleView.userInteractionEnabled = YES;
-//    titleView.backgroundColor = [UIColor orangeColor];
-//    UIButton *button = [[UIButton alloc] initWithFrame:CGRectMake(0, 4.5, 80, 35)];
-//    button.titleLabel.font = [UIFont systemFontOfSize:15.0f];
-//    [button setTitleColor:[UIColor redColor] forState:UIControlStateNormal];
-//    [button setTitle:@"取消" forState:UIControlStateNormal];
-//    [button addTarget:self action:@selector(onCancelButton:) forControlEvents:UIControlEventTouchUpInside];
-//    [titleView addSubview:button];
-//    [self.tableView.backgroundView addSubview:titleView];
-    
 }
 
 - (void)onCancelButton:(UIButton*)sender
@@ -87,6 +63,17 @@
 
 }
 
+- (void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+    self.navigationController.navigationBarHidden = NO;
+}
+
+- (void)viewDidDisappear:(BOOL)animated
+{
+    [super viewDidDisappear:animated];
+    self.navigationController.navigationBarHidden = YES;
+}
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
