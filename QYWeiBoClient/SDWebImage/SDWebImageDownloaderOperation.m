@@ -17,11 +17,12 @@
 @property (copy, nonatomic) SDWebImageDownloaderCompletedBlock completedBlock;
 @property (copy, nonatomic) void (^cancelBlock)();
 
-@property (assign, nonatomic, getter = isExecuting) BOOL executing;
-@property (assign, nonatomic, getter = isFinished) BOOL finished;
 @property (assign, nonatomic) long long expectedSize;
 @property (strong, nonatomic) NSMutableData *imageData;
 @property (strong, nonatomic) NSURLConnection *connection;
+
+@property (assign, nonatomic, getter = isExecuting) BOOL executing;
+@property (assign, nonatomic, getter = isFinished) BOOL finished;
 
 @end
 
@@ -30,6 +31,9 @@
     size_t width, height;
     BOOL responseFromCached;
 }
+
+@synthesize executing = _executing;
+@synthesize finished = _finished;
 
 - (id)initWithRequest:(NSURLRequest *)request options:(SDWebImageDownloaderOptions)options progress:(void (^)(NSUInteger, long long))progressBlock completed:(void (^)(UIImage *, NSData *, NSError *, BOOL))completedBlock cancelled:(void (^)())cancelBlock
 {

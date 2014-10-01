@@ -11,6 +11,11 @@
 #import "XMLDictionary.h"
 #import "NSString+FrameHeight.h"
 
+typedef NS_ENUM(NSUInteger, QYCellStatusImageViewType) {
+    kCellStatusImageView,
+    kCellReweetStatusImageView
+};
+
 @implementation QYStatusTableViewCell
 
 - (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier
@@ -81,19 +86,19 @@
 //    为了保障复用单元格的时候，界面不会出现重复，需要在重新布局前，将界面还原
     [self restoreCellSubviewFrame];
     CGFloat fontSize = 14.0f;
-    NSDictionary *dicUserInfo = [self.cellData objectForKey:@"user"];
+    NSDictionary *dicUserInfo = [self.cellData objectForKey:kStatusUserInfo];
     NSDictionary *statusInfo = self.cellData;
     
     NSUInteger widthSpace = 5;
 
-    NSString *strUrl = [dicUserInfo objectForKey:@"avatar_large"];
+    NSString *strUrl = [dicUserInfo objectForKey:kUserAvatarHd];
     [self.avatarImage setImageWithURL:[NSURL URLWithString:strUrl]];
     
     self.nameLabel.frame =  CGRectMake(CGRectGetMaxX(self.avatarImage.frame)+widthSpace, 2, 100, 20);
-    self.nameLabel.text = [dicUserInfo objectForKey:@"screen_name"];
+    self.nameLabel.text = [dicUserInfo objectForKey:kUserInfoScreenName];
     
     self.createTimeLabel.frame =  CGRectMake(CGRectGetMaxX(self.avatarImage.frame)+widthSpace,CGRectGetHeight(self.nameLabel.frame)+ 2,100,20);
-    NSString *strDate = [statusInfo objectForKey:@"created_at"];
+    NSString *strDate = [statusInfo objectForKey:kStatusCreateTime];
     NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
     [dateFormatter setDateFormat:@"EEE MMM dd HH:mm:ss ZZZ yyyy"];
     NSDate *dateFromString = [dateFormatter dateFromString:strDate];
@@ -103,12 +108,12 @@
     
     self.sourceLabel.frame = CGRectMake(CGRectGetMaxX(self.createTimeLabel.frame)+widthSpace, CGRectGetHeight(self.nameLabel.frame)+2, 150, 20);
     self.sourceLabel.font = [UIFont systemFontOfSize:fontSize];
-    NSString *xmlSourceString = [statusInfo objectForKey:@"source"];
+    NSString *xmlSourceString = [statusInfo objectForKey:kStatusSource];
     NSDictionary *dicSource = [NSDictionary  dictionaryWithXMLString:xmlSourceString];
-    self.sourceLabel.text = [dicSource objectForKey:@"__text"];
+    self.sourceLabel.text = [dicSource objectForKey:XMLDictionaryTextKey];
     
     //    微博正文
-    NSString *statusText = [statusInfo objectForKey:@"text"];
+    NSString *statusText = [statusInfo objectForKey:kStatusText];
     self.labelStatus.text = statusText;
     CGFloat statusTextHight = [statusText frameHeightWithFontSize:fontSize forViewWidth:310.f];
     CGRect newFrame = CGRectMake(widthSpace, CGRectGetMaxY(self.sourceLabel.frame)+widthSpace, 310, statusTextHight);
@@ -123,84 +128,80 @@
         [stView removeFromSuperview];
     }
     
-    NSUInteger statusImageWidth = 70.0f;
-    NSUInteger statusImageHeight = 70.0f;
-    NSDictionary *retweetStatusInfo = [self.cellData objectForKey:@"retweeted_status"];
+    NSDictionary *retweetStatusInfo = [self.cellData objectForKey:kStatusRetweetStatus];
     //  当这条微博是一条转发微博
     if (retweetStatusInfo != nil) {
         //    转发微博正文
-        NSString *statusText = [retweetStatusInfo objectForKey:@"text"];
+        NSString *statusText = [retweetStatusInfo objectForKey:kStatusText];
         self.labelRetweetStatus.text = statusText;
         CGRect newFrame = CGRectMake(widthSpace, CGRectGetMaxY(self.labelStatus.frame)+widthSpace, 310, [statusText frameHeightWithFontSize:fontSize forViewWidth:310.0f]);
         self.labelRetweetStatus.frame = newFrame;
         
-        // 转发微博正文附带图片
-        NSArray *retStatusPicUrls = [retweetStatusInfo objectForKey:@"pic_urls"];
-        if (retStatusPicUrls.count > 1) {
-            self.retStImageViewBg.frame = CGRectMake(widthSpace, CGRectGetMaxY(self.labelRetweetStatus.frame)+widthSpace, 310, statusImageWidth * ceilf(retStatusPicUrls.count /3.0f));
-            for (int i = 0 ; i < retStatusPicUrls.count; i++) {
-                UIImageView *stImgView = nil;
-                UITapGestureRecognizer *tapGesture = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(onRetImageViewTapped:)];
-                if (retStatusPicUrls.count == 4) {
-                    stImgView = [[UIImageView alloc] initWithFrame:CGRectMake(5+statusImageWidth*(i%2), statusImageHeight*ceil(i/2), statusImageWidth, statusImageHeight)];
-                }else
-                {
-                    stImgView = [[UIImageView alloc] initWithFrame:CGRectMake(5+statusImageWidth*(i%3), statusImageHeight*ceil(i/3), statusImageWidth, statusImageHeight)];
-                }
-                stImgView.userInteractionEnabled = YES;
-                [stImgView addGestureRecognizer:tapGesture];
-                NSString *strPicUrls = [retStatusPicUrls[i] objectForKey:@"thumbnail_pic"];
-                [stImgView setImageWithURL:[NSURL URLWithString:strPicUrls]];
-                [self.retStImageViewBg addSubview:stImgView];
-            }
-        }else if (retStatusPicUrls.count == 1)
-        {
-            
-            NSString *strPicUrls = [retStatusPicUrls[0] objectForKey:@"thumbnail_pic"];
-            UIImage *image = [UIImage imageWithData:[NSData dataWithContentsOfURL:[NSURL URLWithString:strPicUrls]]];
-            
-            UIImageView *stImgView = [[UIImageView alloc] initWithFrame:CGRectMake(5, 5, image.size.width, image.size.height)];
-            stImgView.userInteractionEnabled = YES;
-             UITapGestureRecognizer *tapGesture = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(onRetImageViewTapped:)];
-            [stImgView addGestureRecognizer:tapGesture];
-            [stImgView setImage:image];
-            
-            [self.retStImageViewBg addSubview:stImgView];
-            self.retStImageViewBg.frame = CGRectMake(widthSpace, CGRectGetMaxY(self.labelRetweetStatus.frame), image.size.width, image.size.height);
-        }
-        
+        [self layoutStatusImageView:kCellReweetStatusImageView];
         
     }else
     {
-        //   微博正文附带图片
-        NSArray *statusPicUrls = [statusInfo objectForKey:@"pic_urls"];
-        
-        if (statusPicUrls.count > 1) {
-            self.stImageViewBg.frame = CGRectMake(0, CGRectGetMaxY(self.labelStatus.frame)+widthSpace, 310, 80 * ceilf(statusPicUrls.count /3.0f));
-            for (int i = 0 ; i < statusPicUrls.count; i++) {
-                UIImageView *stImgView = nil;
-                if (statusPicUrls.count == 4) {
-                    stImgView = [[UIImageView alloc] initWithFrame:CGRectMake(5+statusImageWidth*(i%2), statusImageHeight*ceil(i/2), statusImageWidth, statusImageHeight)];
-                }else
-                {
-                    stImgView = [[UIImageView alloc] initWithFrame:CGRectMake(5+statusImageWidth*(i%3), statusImageHeight*ceil(i/3), statusImageWidth, statusImageHeight)];
-                }
-                
-                NSString *strPicUrls = [statusPicUrls[i] objectForKey:@"thumbnail_pic"];
-                [stImgView setImageWithURL:[NSURL URLWithString:strPicUrls]];
-                [self.stImageViewBg addSubview:stImgView];
-            }
-        }else if (statusPicUrls.count == 1)
-        {
-            
-            NSString *strPicUrls = [statusPicUrls[0] objectForKey:@"thumbnail_pic"];
-            UIImage *image = [UIImage imageWithData:[NSData dataWithContentsOfURL:[NSURL URLWithString:strPicUrls]]];
-            UIImageView *stImgView = [[UIImageView alloc] initWithFrame:CGRectMake(5, 5, image.size.width, image.size.height)];
-            [stImgView setImage:image];
-            self.stImageViewBg.frame = CGRectMake(widthSpace, CGRectGetMaxY(self.labelStatus.frame)+widthSpace, image.size.width, image.size.height);
-             [self.stImageViewBg addSubview:stImgView];
-        }
+        [self layoutStatusImageView:kCellStatusImageView];
     }
+}
+
+- (void)layoutStatusImageView:(QYCellStatusImageViewType)type
+{
+    NSDictionary *statusInfo = nil;
+    UIView *backGroundView = nil;
+    UILabel *preLabel = nil;
+    
+    const  NSUInteger widthSpace = 5;
+    NSUInteger statusImageWidth = 70.0f;
+    NSUInteger statusImageHeight = 70.0f;
+    switch (type) {
+        case kCellStatusImageView:
+        {
+            statusInfo = self.cellData;
+            backGroundView = self.stImageViewBg;
+            preLabel = self.labelStatus;
+        }
+            break;
+            case kCellReweetStatusImageView:
+        {
+            statusInfo = [self.cellData objectForKey:kStatusRetweetStatus];
+            backGroundView = self.retStImageViewBg;
+            preLabel = self.labelRetweetStatus;
+        }
+            break;
+        default:
+            break;
+    }
+    
+    //   微博正文附带图片
+    NSArray *statusPicUrls = [statusInfo objectForKey:kStatusPicUrls];
+    
+    if (statusPicUrls.count > 1) {
+        backGroundView.frame = CGRectMake(0, CGRectGetMaxY(preLabel.frame)+widthSpace, 310, 80 * ceilf(statusPicUrls.count /3.0f));
+        for (int i = 0 ; i < statusPicUrls.count; i++) {
+            UIImageView *stImgView = nil;
+            if (statusPicUrls.count == 4) {
+                stImgView = [[UIImageView alloc] initWithFrame:CGRectMake(5+statusImageWidth*(i%2), statusImageHeight*ceil(i/2), statusImageWidth, statusImageHeight)];
+            }else
+            {
+                stImgView = [[UIImageView alloc] initWithFrame:CGRectMake(5+statusImageWidth*(i%3), statusImageHeight*ceil(i/3), statusImageWidth, statusImageHeight)];
+            }
+            
+            NSString *strPicUrls = [statusPicUrls[i] objectForKey:kStatusThumbnailPic];
+            [stImgView setImageWithURL:[NSURL URLWithString:strPicUrls]];
+            [backGroundView addSubview:stImgView];
+        }
+    }else if (statusPicUrls.count == 1)
+    {
+        
+        NSString *strPicUrls = [statusPicUrls[0] objectForKey:kStatusThumbnailPic];
+        UIImage *image = [UIImage imageWithData:[NSData dataWithContentsOfURL:[NSURL URLWithString:strPicUrls]]];
+        UIImageView *stImgView = [[UIImageView alloc] initWithFrame:CGRectMake(5, 5, image.size.width, image.size.height)];
+        [stImgView setImage:image];
+        backGroundView.frame = CGRectMake(widthSpace, CGRectGetMaxY(preLabel.frame)+widthSpace, image.size.width, image.size.height);
+        [backGroundView addSubview:stImgView];
+    }
+
 }
 
 #pragma mark -

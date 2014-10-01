@@ -129,14 +129,6 @@
     if (refreshControl != nil) {
         QYPlaySound *playSound = [[QYPlaySound alloc] initForPlayingSoundEffectWith:@"msgcome.wav"];
         [playSound play];
-    }else
-    {
-        if (![SVProgressHUD isVisible]) {
-            [SVProgressHUD showWithStatus:@"获取数据"];
-        }
-    }
-    if (![SVProgressHUD isVisible]) {
-        [SVProgressHUD showWithStatus:@"obtain"];
     }
     [self requstTimelineFromSinaServer];
     [self requestUserInfoFromSinaServer];
@@ -194,18 +186,18 @@ static CGFloat fontSize = 14.0f;
     
     NSDictionary *statusInfo = self.statusList[indexPath.section];
     
-    NSString *content = [statusInfo objectForKey:@"text"];
+    NSString *content = [statusInfo objectForKey:kStatusText];
     
     statusTextHeight = [content frameHeightWithFontSize:fontSize forViewWidth:310.0f];
-    NSDictionary *retweetStatus = [statusInfo objectForKey:@"retweeted_status"];
+    NSDictionary *retweetStatus = [statusInfo objectForKey:kStatusRetweetStatus];
     
     //    当retweetStatus为空的时候， 表示当前是一条原创微博
     if (nil == retweetStatus) {
         //      如果这条微博带的有图片，则计算图片的高度
-        NSArray *picUrls = [statusInfo objectForKey:@"pic_urls"];
+        NSArray *picUrls = [statusInfo objectForKey:kStatusPicUrls];
         if (picUrls.count == 1) {
             NSDictionary *dic = picUrls[0];
-            NSString *strPicUrls = [dic objectForKey:@"thumbnail_pic"];
+            NSString *strPicUrls = [dic objectForKey:kStatusThumbnailPic];
             CGSize imagSize =  [self downloadJpgImage:strPicUrls];
             statusImageViewHeight += imagSize.height;
         }else if(picUrls.count > 1)
@@ -215,12 +207,12 @@ static CGFloat fontSize = 14.0f;
         }
     }else
     {
-        NSString *retContent = [retweetStatus objectForKey:@"text"];
+        NSString *retContent = [retweetStatus objectForKey:kStatusText];
         retweetStatusTextHeight = [retContent frameHeightWithFontSize:fontSize forViewWidth:310.0f];
-        NSArray *retPicUrls = [retweetStatus objectForKey:@"pic_urls"];
+        NSArray *retPicUrls = [retweetStatus objectForKey:kStatusPicUrls];
         if (retPicUrls.count == 1) {
             NSDictionary *dic = retPicUrls[0];
-            NSString *strPicUrls = [dic objectForKey:@"thumbnail_pic"];
+            NSString *strPicUrls = [dic objectForKey:kStatusThumbnailPic];
             CGSize imgSize = [self downloadJpgImage:strPicUrls];
             statusImageViewHeight += imgSize.height;
         }else if(retPicUrls.count > 1)
@@ -362,7 +354,6 @@ static CGFloat fontSize = 14.0f;
         NSLog(@"Request data from sina server error:%@",error);
         return;
     }
-    [SVProgressHUD dismissWithError:@"RevData"];
 }
 
 - (void)request:(SinaWeiboRequest *)request didFinishLoadingWithResult:(id)result
@@ -384,7 +375,6 @@ static CGFloat fontSize = 14.0f;
     if ([self.refreshControl isRefreshing]) {
         [self.refreshControl endRefreshing];
     }
-    [SVProgressHUD dismissWithSuccess:@"OK"];
 }
 
 #pragma mark -
@@ -398,8 +388,8 @@ static CGFloat fontSize = 14.0f;
     CGPoint currentPoint = [gestur locationInView:self.tableView];
     NSIndexPath *currentIndexpath = [self.tableView indexPathForRowAtPoint:currentPoint];
     NSDictionary *usrInfo = [self.statusList objectAtIndex:currentIndexpath.section];
-    personViewController.mDicPersonInfo = [usrInfo objectForKey:@"user"];
-    personViewController.userID =[NSString stringWithFormat:@"%@", [usrInfo objectForKey:@"id"]];
+    personViewController.mDicPersonInfo = [usrInfo objectForKey:kStatusUserInfo];
+    personViewController.userID =[NSString stringWithFormat:@"%@", [usrInfo objectForKey:kStatusID]];
     personViewController.mUserTimeLines = [NSArray arrayWithObject:usrInfo];
     [self.navigationController pushViewController:personViewController animated:YES];
 }
@@ -407,7 +397,7 @@ static CGFloat fontSize = 14.0f;
 - (void)statusTableCell:(QYStatusTableViewCell*)cell StatusImageViewDidSelected:(UIGestureRecognizer*) gesture
 {
     
-    NSString *originalPic = [cell.cellData objectForKey:@"original_pic"];
+    NSString *originalPic = [cell.cellData objectForKey:kStatusOriginalPic];
     if (originalPic != nil) {
         [self showFullViewWithName:originalPic];
     }
@@ -415,8 +405,8 @@ static CGFloat fontSize = 14.0f;
 
 - (void)statusTableCell:(QYStatusTableViewCell *)cell RetStatusImageViewDidSelected:(UIGestureRecognizer*) gesture
 {
-    NSDictionary *currentStatus = [cell.cellData objectForKey:@"retweeted_status"];
-    NSString *originalPic = [currentStatus objectForKey:@"original_pic"];
+    NSDictionary *currentStatus = [cell.cellData objectForKey:kStatusRetweetStatus];
+    NSString *originalPic = [currentStatus objectForKey:kStatusOriginalPic];
     if (originalPic != nil) {
         [self showFullViewWithName:originalPic];
     }
