@@ -10,31 +10,48 @@
 	<string>QYWeiBoClient</string>
 	<key>IDESourceControlProjectOriginsDictionary</key>
 	<dict>
-		<key>6C49BD57-116A-4177-907E-761A48B65CF7</key>
+		<key>2B1618DFF701E9E399A3F579E45AF4B69BBAFDE8</key>
 		<string>https://github.com/shuangfeiyiy/QYWeiBoClient.git</string>
+		<key>a65f4ca7-1881-4f10-90db-358f8819f604++1144</key>
+		<string>http://192.168.108.157:18080/svn/xtyfb/iphone/faxclient/HSShtFaxClient/HSShtFaxClient/SVProgressHUD</string>
 	</dict>
 	<key>IDESourceControlProjectPath</key>
 	<string>QYWeiBoClient.xcodeproj/project.xcworkspace</string>
 	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
 	<dict>
-		<key>6C49BD57-116A-4177-907E-761A48B65CF7</key>
+		<key>2B1618DFF701E9E399A3F579E45AF4B69BBAFDE8</key>
 		<string>../..</string>
+		<key>a65f4ca7-1881-4f10-90db-358f8819f604++1144</key>
+		<string>../../QYWeiBoClient/SVProgressHUD</string>
+	</dict>
+	<key>IDESourceControlProjectRepositoryRootDictionary</key>
+	<dict>
+		<key>a65f4ca7-1881-4f10-90db-358f8819f604++1144</key>
+		<string>http://192.168.108.157:18080/svn/xtyfb</string>
 	</dict>
 	<key>IDESourceControlProjectURL</key>
 	<string>https://github.com/shuangfeiyiy/QYWeiBoClient.git</string>
 	<key>IDESourceControlProjectVersion</key>
-	<integer>110</integer>
+	<integer>111</integer>
 	<key>IDESourceControlProjectWCCIdentifier</key>
-	<string>6C49BD57-116A-4177-907E-761A48B65CF7</string>
+	<string>2B1618DFF701E9E399A3F579E45AF4B69BBAFDE8</string>
 	<key>IDESourceControlProjectWCConfigurations</key>
 	<array>
 		<dict>
 			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
 			<string>public.vcs.git</string>
 			<key>IDESourceControlWCCIdentifierKey</key>
-			<string>6C49BD57-116A-4177-907E-761A48B65CF7</string>
+			<string>2B1618DFF701E9E399A3F579E45AF4B69BBAFDE8</string>
 			<key>IDESourceControlWCCName</key>
 			<string>QYWeiBoClient</string>
+		</dict>
+		<dict>
+			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
+			<string>public.vcs.subversion</string>
+			<key>IDESourceControlWCCIdentifierKey</key>
+			<string>a65f4ca7-1881-4f10-90db-358f8819f604++1144</string>
+			<key>IDESourceControlWCCName</key>
+			<string>SVProgressHUD</string>
 		</dict>
 	</array>
 </dict>
